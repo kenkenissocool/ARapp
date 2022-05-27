@@ -55,6 +55,13 @@ function staticLoadPlaces() {
                 lng: 141.353638,
             }
         },
+        {
+            name: 'Library',
+            location: {
+                lat: 36.109064,
+                lng: 140.101404,
+            }
+        },
 
     ];
 }
