@@ -62,6 +62,13 @@ function staticLoadPlaces() {
                 lng: 140.101404,
             }
         },
+        {
+            name: 'Random spot',
+            location: {
+                lat: 35.7216373,
+                lng: 139.9409352,
+            }
+        },
 
     ];
 }
