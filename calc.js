@@ -24,19 +24,19 @@ export class CalcVR {
     }
     calcSizeDist(distance) {
         if(distance <= 1000 && distance >= 500){
-            this.objectSize = '25 25 25';
+            this.objectSize = '50 50 50';
             this.newDistance = 800;
         }else if(distance > 1000 && distance <= 8000) {
-            this.objectSize = '20 20 20';
+            this.objectSize = '45 45 45';
             this.newDistance = 800 + (distance/1000);
         }else if(distance > 8000 && distance <= 16000) {
-            this.objectSize = '18 18 18';
+            this.objectSize = '40 40 40';
             this.newDistance = 800 + (distance/1000);
         }else if(distance > 16000 && distance <= 20000) {
-            this.objectSize = '15 15 15';
+            this.objectSize = '30 30 30';
             this.newDistance = 800 + (distance/1000);
         }else if(distance > 20000) {
-            this.objectSize = '10 10 10';
+            this.objectSize = '20 20 20';
             this.newDistance = 800 + (distance/1000);
         }
     }
