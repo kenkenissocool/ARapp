@@ -49,10 +49,10 @@ let coordinates = [];
 
 window.onload = async () => {
   console.log("on loaded");
-  const res = await fetch("ors-route_1654058631736.json");
-  const json = await res.json();
-  const coords = json.routes[0].geometry.coordinates;
-  coordinates = coords.map((coord) => {
+  const res = await fetch("ors-route_1654058631736.json"); //awaitして、ors-routeを撮ってきてresに
+  const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
+  const coords = json.routes[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
+  coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
     return {
       name: "test",
       location: {
