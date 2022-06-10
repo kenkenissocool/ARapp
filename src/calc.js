@@ -16,6 +16,7 @@ export class CalcVR {
     this.distance = current.distanceTo(target);
     this.bearing = current.finalBearingTo(target);
     this.currentPosition = currentPosiArg;
+
   }
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
     const current = new LatLon(currentPosition[0], currentPosition[1]);
@@ -49,7 +50,7 @@ let coordinates = [];
 
 window.onload = async () => {
   console.log("on loaded");
-  const res = await fetch("ors-route_1654058631736.json"); //awaitして、ors-routeを撮ってきてresに
+  const res = await fetch("yokohama.json"); //awaitして、ors-routeを撮ってきてresに
   const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
   const coords = json.routes[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
