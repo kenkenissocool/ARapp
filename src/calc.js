@@ -117,11 +117,11 @@ function renderPlaces(places, pos) {
         "gps-entity-place",
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
       );
-      model2.setAttribute("scale", `${i*5}`);
+      model2.setAttribute("scale", `${i*5} ${i*5} ${i*5}`);
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
-      console.log(cal.splitsLat[i]);
+      console.log(i*5);
 
       scene.appendChild(model2);
     }
