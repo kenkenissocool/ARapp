@@ -57,7 +57,7 @@ export class CalcVR {
     }
   }
 }
-
+a
 let coordinates = [];
 
 window.onload = async () => {
