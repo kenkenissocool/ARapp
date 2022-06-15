@@ -112,18 +112,20 @@ function renderPlaces(places, pos) {
 
     scene.appendChild(model);
 
-    // let model2 = document.createElement("a-box");
-    // model2.setAttribute("material", `color:red`);
-    // model2.setAttribute(
-    //   "gps-entity-place",
-    //   `latitude: ${cal.splitsLat[0]}; longitude: ${cal.splitsLon[0]};`
-    // );
-    // model2.setAttribute("scale", `${cal.objectSize}`);
-    // model2.addEventListener("loaded", () => {
-    //   window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-    // });
+    let model2 = document.createElement("a-box");
+    model2.setAttribute("material", `color:red`);
+    model2.setAttribute(
+      "gps-entity-place",
+      `latitude: ${cal.splitsLat[0]}; longitude: ${cal.splitsLon[0]};`
+    );
+    model2.setAttribute("scale", `${cal.objectSize}`);
+    model2.addEventListener("loaded", () => {
+      window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+    });
 
-    // scene.appendChild(model2);
+    console.log(cal.objectSize);
+
+    scene.appendChild(model2);
   });
 }
 var options = {
