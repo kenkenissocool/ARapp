@@ -27,8 +27,10 @@
 
     <script type="text/javascript">
         function touchAPI1(){
+            const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/"
             const place = document.getElementById("plase").value
-            document.getElementById("resp").textContent = place;
+            const URL = urlTemp + place 
+            document.getElementById("resp").textContent = URL;
         }
         console.log("JavaScriptを実行しています");
     </script>
