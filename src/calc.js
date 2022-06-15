@@ -8,8 +8,8 @@ export class CalcVR {
     this.currentPosition = [0, 0];
     this.objectSize = "0, 0, 0";
     this.newDistance = 800;
-    this.splits = [0, 0];
-    this.splitpoints = [];
+    this.splitsLat = [];
+    this.splitsLon = [];
   }
 
   calcDist(currentPosiArg, targetPosition) {
@@ -20,11 +20,11 @@ export class CalcVR {
     this.currentPosition = currentPosiArg;
   }
   calcBetween(currentPosition, targetPosition){
-    const distanceLon = currentPosition[0]-targetPosition[0];
-    const distanceLat = currentPosition[1]-targetPosition[1];
-    this.splits = [distanceLon/10, distanceLat/10];
-    for (let t = 0; t < array.length; t++) {
-      splitpoints.push();
+    const distanceLat = (currentPosition[0]-targetPosition[0])/10;
+    const distanceLon = (currentPosition[1]-targetPosition[1])/10;
+    for (let t = 0; t < 10; t++) {
+      splitsLat.push(currentPosition[0] + distanceLat*t);
+      splitsLon.push(currentPosition[1] + distanceLon*t);
     }
   }
 
@@ -114,7 +114,7 @@ function renderPlaces(places, pos) {
     model2.setAttribute("material", `color:red`);
     model2.setAttribute(
       "gps-entity-place",
-      `latitude: ${cal.newPosition[0]}; longitude: ${cal.newPosition[1]};`
+      `latitude: ${cal.splitsLat[0]}; longitude: ${cal.splitsLon[0]};`
     );
     model2.setAttribute("scale", `${cal.objectSize}`);
     model2.addEventListener("loaded", () => {
