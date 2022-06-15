@@ -25,10 +25,11 @@
     <p>返答<span id = "resp"></p>
     <input type="button" value="選択" onclick="touchAPI1()"/>
 
-    <script>
+    <script type="text/javascript">
         function touchAPI1(){
             const place = document.getElementById("place").value
             document.getElementById("resp").textContent = place;
         }
+        console.log("JavaScriptを実行しています");
     </script>
 </html>
