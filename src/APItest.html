@@ -31,7 +31,8 @@
             const place = document.getElementById("plase").value;
             const URL = urlTemp + place; 
             
-            const JSON = callAPIOCI(URL);
+            const JN = callAPIOCI(URL);
+            const response = JSON.stringify(JN);
             document.getElementById("resp").textContent = JSON;
 
             
