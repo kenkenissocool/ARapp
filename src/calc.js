@@ -126,7 +126,7 @@ function renderPlaces(places, pos) {
       scene.appendChild(model2);
     }
 
-    // let model2 = document.createElement("a-box");//for文で10個分表示させるhe
+    // let model2 = document.createElement("a-box");//for文で10個分表示させる
     // model2.setAttribute("material", `color:red`);
     // model2.setAttribute(
     //   "gps-entity-place",
