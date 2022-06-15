@@ -116,7 +116,7 @@ function renderPlaces(places, pos) {
     model2.setAttribute("material", `color:red`);
     model2.setAttribute(
       "gps-entity-place",
-      `latitude: ${cal.splitsLat[0]}; longitude: ${cal.splitsLon[0]};`
+      `latitude: ${cal.splitsLat[1]}; longitude: ${cal.splitsLon[1]};`
     );
     model2.setAttribute("scale", `${cal.objectSize}`);
     model2.addEventListener("loaded", () => {
