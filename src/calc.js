@@ -110,7 +110,7 @@ function renderPlaces(places, pos) {
 
     scene.appendChild(model);
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < 10; i++) {
       let model2 = document.createElement("a-box");//for文で10個分表示させる
       model2.setAttribute("material", `color:red`);
       model2.setAttribute(
