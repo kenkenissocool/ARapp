@@ -26,8 +26,8 @@ export class CalcVR {
       this.splitsLat.push(currentPosition[0] + distanceLat*t);
       this.splitsLon.push(currentPosition[1] + distanceLon*t);
     }
-    console.log(this.splitsLat[0]);
-    console.log(this.splitsLon[0]);
+    console.log(this.splitsLat[3]);
+    console.log(this.splitsLon[3]);
   }
 
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
@@ -57,7 +57,7 @@ export class CalcVR {
     }
   }
 }
-a
+
 let coordinates = [];
 
 window.onload = async () => {
@@ -118,10 +118,12 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${cal.splitsLat[3]}; longitude: ${cal.splitsLon[3]};`
     );
-    model2.setAttribute("scale", "50 50 50");
+    model2.setAttribute("scale", `${cal.objectSize}`);
     model2.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
+
+    console.log("scale: " + cal.objectSize);
 
     scene.appendChild(model2);
   });
