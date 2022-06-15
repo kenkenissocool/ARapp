@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver19
+    <p>APIをテストするページver20
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -44,7 +44,7 @@
             const locationJSON  = await res.json();
             const lon = locationJSON.items.lon;
             
-            return lon;
+            return await lon;
         }
         console.log("JavaScriptを実行しています");
     </script>
