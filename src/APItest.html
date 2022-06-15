@@ -43,7 +43,8 @@
             const res = await fetch(url);
             const locationJSON  = await res.json();
             
-            const lon = locationJSON.items.lon;
+            const temp = locationJSON.parse();
+            const lon = temp.items.lon;
             return lon;
         }
         console.log("JavaScriptを実行しています");
