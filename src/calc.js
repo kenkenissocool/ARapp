@@ -8,6 +8,8 @@ export class CalcVR {
     this.currentPosition = [0, 0];
     this.objectSize = "0, 0, 0";
     this.newDistance = 800;
+    this.splitsLat = [];
+    this.splitsLon = [];
   }
 
   calcDist(currentPosiArg, targetPosition) {
@@ -17,6 +19,15 @@ export class CalcVR {
     this.bearing = current.finalBearingTo(target);
     this.currentPosition = currentPosiArg;
   }
+  calcBetween(currentPosition, targetPosition){
+    const distanceLat = (currentPosition[0]-targetPosition[0])/10;
+    const distanceLon = (currentPosition[1]-targetPosition[1])/10;
+    for (let t = 0; t < 10; t++) {
+      this.splitsLat.push(currentPosition[0] + distanceLat*t);
+      this.splitsLon.push(currentPosition[1] + distanceLon*t);
+    }
+  }
+
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
     const current = new LatLon(currentPosition[0], currentPosition[1]);
     const calculatedlced = current.destinationPoint(
@@ -79,10 +90,12 @@ function renderPlaces(places, pos) {
     let longitude = place.location.lng;
     let name = place.name;
     let modelName = place.modelName;
+    cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
     cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
     cal.calcSizeDist(cal.distance);
+
     let model = document.createElement("a-text");
     model.setAttribute("value", `${name}`);
     model.setAttribute("look-at", "[gps-camera]");
@@ -91,12 +104,24 @@ function renderPlaces(places, pos) {
       `latitude: ${cal.newPosition[0]}; longitude: ${cal.newPosition[1]};`
     );
     model.setAttribute("scale", `${cal.objectSize}`);
-
     model.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
 
     scene.appendChild(model);
+
+    let model2 = document.createElement("a-box");
+    model2.setAttribute("material", `color:red`);
+    model2.setAttribute(
+      "gps-entity-place",
+      `latitude: ${cal.splitsLat[0]}; longitude: ${cal.splitsLon[0]};`
+    );
+    model2.setAttribute("scale", `${cal.objectSize}`);
+    model2.addEventListener("loaded", () => {
+      window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+    });
+
+    scene.appendChild(model2);
   });
 }
 var options = {
