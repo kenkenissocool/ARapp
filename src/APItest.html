@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver17
+    <p>APIをテストするページver18
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -33,7 +33,7 @@
             const URL = urlTemp + place; 
             
             let JN = callAPIOCI(URL);
-            document.getElementById("resp").textContent = JN;
+            document.getElementById("resp").textContent = JN[0];
             console.log(JN);
 
 
@@ -42,8 +42,7 @@
         async function callAPIOCI(url){
             const res = await fetch(url);
             const locationJSON  = await res.json();
-            const temp = locationJSON.items.lon;
-            const lon = JSON.stringify(temp);
+            const lon = locationJSON.items.lon;
             
             return lon;
         }
