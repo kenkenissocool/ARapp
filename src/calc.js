@@ -8,6 +8,8 @@ export class CalcVR {
     this.currentPosition = [0, 0];
     this.objectSize = "0, 0, 0";
     this.newDistance = 800;
+    this.splits = [0, 0];
+    this.splitpoints = [];
   }
 
   calcDist(currentPosiArg, targetPosition) {
@@ -16,8 +18,16 @@ export class CalcVR {
     this.distance = current.distanceTo(target);
     this.bearing = current.finalBearingTo(target);
     this.currentPosition = currentPosiArg;
-
   }
+  calcBetween(currentPosition, targetPosition){
+    const distanceLon = currentPosition[0]-targetPosition[0];
+    const distanceLat = currentPosition[1]-targetPosition[1];
+    this.splits = [distanceLon/10, distanceLat/10];
+    for (let t = 0; t < array.length; t++) {
+      splitpoints.push();
+    }
+  }
+
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
     const current = new LatLon(currentPosition[0], currentPosition[1]);
     const calculatedlced = current.destinationPoint(
@@ -50,7 +60,7 @@ let coordinates = [];
 
 window.onload = async () => {
   console.log("on loaded");
-  const res = await fetch("yokohama.geojson"); //awaitして、ors-routeを撮ってきてresに
+  const res = await fetch("ors-route_1654058631736.json"); //awaitして、ors-routeを撮ってきてresに
   const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
   const coords = json.routes[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
@@ -80,10 +90,12 @@ function renderPlaces(places, pos) {
     let longitude = place.location.lng;
     let name = place.name;
     let modelName = place.modelName;
+    cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
     cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
     cal.calcSizeDist(cal.distance);
+
     let model = document.createElement("a-text");
     model.setAttribute("value", `${name}`);
     model.setAttribute("look-at", "[gps-camera]");
@@ -92,12 +104,24 @@ function renderPlaces(places, pos) {
       `latitude: ${cal.newPosition[0]}; longitude: ${cal.newPosition[1]};`
     );
     model.setAttribute("scale", `${cal.objectSize}`);
-
     model.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
 
     scene.appendChild(model);
+
+    let model2 = document.createElement("a-box");
+    model2.setAttribute("material", `color:red`);
+    model2.setAttribute(
+      "gps-entity-place",
+      `latitude: ${cal.newPosition[0]}; longitude: ${cal.newPosition[1]};`
+    );
+    model2.setAttribute("scale", `${cal.objectSize}`);
+    model2.addEventListener("loaded", () => {
+      window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+    });
+
+    scene.appendChild(model2);
   });
 }
 var options = {
