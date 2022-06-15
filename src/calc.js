@@ -39,7 +39,7 @@ export class CalcVR {
     this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
   }
   calcSizeDist(distance) {
-    if (distance <= 1000 && distance >= 500) {
+    if (distance <= 1000 && distance >= 0) {
       this.objectSize = "50 50 50";
       this.newDistance = 800;
     } else if (distance > 1000 && distance <= 8000) {
@@ -114,6 +114,7 @@ function renderPlaces(places, pos) {
 
     let model2 = document.createElement("a-box");
     model2.setAttribute("material", `color:red`);
+    model2.setAttribute("look-at", "[gps-camera]");
     model2.setAttribute(
       "gps-entity-place",
       `latitude: ${cal.splitsLat[0]}; longitude: ${cal.splitsLon[0]};`
