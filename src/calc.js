@@ -135,6 +135,7 @@ function renderPlaces(places, pos) {
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
+      console.log(cal.splitsLat[i]);
 
       scene.appendChild(model2);
     }
