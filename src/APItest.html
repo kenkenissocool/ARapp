@@ -33,8 +33,6 @@
             const URL = urlTemp + place; 
             
             let JN = callAPIOCI(URL);
-            const items = JN.items;
-            const lon = JSON.parse(items);
             document.getElementById("resp").textContent = lon;
             console.log(JN);
 
@@ -44,7 +42,9 @@
         async function callAPIOCI(url){
             const res = await fetch(url);
             const locationJSON  = await res.json();
-            return locationJSON;
+            
+            const lon = locationJSON.items.lon;
+            return lon;
         }
         console.log("JavaScriptを実行しています");
     </script>
