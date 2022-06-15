@@ -20,8 +20,8 @@ export class CalcVR {
     this.currentPosition = currentPosiArg;
   }
   calcBetween(currentPosition, targetPosition){
-    const distanceLat = (currentPosition[0]-targetPosition[0])/10;
-    const distanceLon = (currentPosition[1]-targetPosition[1])/10;
+    const distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/10;
+    const distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/10;
     for (let t = 0; t < 10; t++) {
       this.splitsLat.push(currentPosition[0] + distanceLat*t);
       this.splitsLon.push(currentPosition[1] + distanceLon*t);
@@ -116,7 +116,7 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${cal.splitsLat[1]}; longitude: ${cal.splitsLon[1]};`
     );
-    model2.setAttribute("scale", `5 5 5`);
+    model2.setAttribute("scale", `50 50 50`);
     model2.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
