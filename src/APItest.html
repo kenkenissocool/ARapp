@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APItest</title>
+</head>
+<body>
+    <p>APIをテストするページ</p>
+        <label for="place">行きたい場所を選択</label>
+        <select id="plase">
+        <option value="1">粉とクリーム</option>
+        <option value="2">つくば駅</option>
+        <option value="3">春日宿舎</option>
+        <option value="4">一の矢宿舎</option>
+        <option value="5">大学会館</option>
+        <option value="6">中央図書館</option>
+        <option value="7">大学本部</option>
+        <option value="8">カスミ筑波大学店</option>
+        <option value="9">筑波大学附属病院</option>
+        <option value="10">ヒューマン･ハイ･パフォーマンス先端研究センター</option>
+        </select>
+    <br>
+    <p>返答<span id = "resp"></p>
+    <input type="button" value="選択" onclick="touchAPI1()"/>
+
+    <script>
+        function touchAPI1(){
+            const place = document.getElementById("place").value
+            document.getElementById("resp").textContent = place;
+        }
+    </script>
+</html>
