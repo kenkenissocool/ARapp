@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver4</p>
+    <p>APIをテストするページver5</p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
         <option value="1">粉とクリーム</option>
@@ -32,15 +32,10 @@
             const URL = urlTemp + place; 
             
             const JN = callAPIOCI(URL);
-            var response = JSON.parse(JN);
-            var i;
+            var response = JN.items.lon
+            document.getElementById("resp").textContent = JN;
+            console.log(response);
 
-            for(i in data){
-            if(data[i]instanceof Object){
-                console.log(data[i]);
-            }
-            }
-            document.getElementById("resp").textContent = JSON;
 
             
         }
