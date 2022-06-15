@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver9</p>
+    <p>APIをテストするページver10</p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
         <option value="1">粉とクリーム</option>
@@ -32,7 +32,8 @@
             const URL = urlTemp + place; 
             
             let JN = callAPIOCI(URL);
-            document.getElementById("resp").textContent = "a";
+            const lon = JN.items.lon;
+            document.getElementById("resp").textContent = lon;
             console.log(JN);
 
 
