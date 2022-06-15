@@ -110,6 +110,22 @@ function renderPlaces(places, pos) {
 
     scene.appendChild(model);
 
+    for (let i = 0; i < 10; i++) {
+      let model2 = document.createElement("a-box");//for文で10個分表示させる
+      model2.setAttribute("material", `color:red`);
+      model2.setAttribute(
+        "gps-entity-place",
+        `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
+      );
+      model2.setAttribute("scale", `${cal.objectSize}`);
+      model2.addEventListener("loaded", () => {
+        window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+      });
+      console.log(cal.splitsLat[i]);
+
+      scene.appendChild(model2);
+    }
+
     // let model2 = document.createElement("a-box");//for文で10個分表示させる
     // model2.setAttribute("material", `color:red`);
     // model2.setAttribute(
@@ -124,20 +140,7 @@ function renderPlaces(places, pos) {
     // console.log(cal.objectSize);
 
     // scene.appendChild(model2);
-    for (let i = 0; i < 10; i++) {
-      let model2 = document.createElement("a-box");//for文で10個分表示させる
-      model2.setAttribute("material", `color:red`);
-      model2.setAttribute(
-        "gps-entity-place",
-        `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
-      );
-      model2.setAttribute("scale", `${cal.objectSize}`);
-      model2.addEventListener("loaded", () => {
-        window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-      });
-
-      scene.appendChild(model2);
-    }
+   
   });
 }
 var options = {
