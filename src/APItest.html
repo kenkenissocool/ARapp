@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver8</p>
+    <p>APIをテストするページver9</p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
         <option value="1">粉とクリーム</option>
@@ -32,9 +32,8 @@
             const URL = urlTemp + place; 
             
             let JN = callAPIOCI(URL);
-            let reso =  JN.items.lat;
-            document.getElementById("resp").textContent = reso;
-            console.log(reso);
+            document.getElementById("resp").textContent = "a";
+            console.log(JN);
 
 
             
@@ -42,8 +41,7 @@
         async function callAPIOCI(url){
             const res = await fetch(url);
             const locationJSON  = await res.json();
-            let locJN = JSON.parse(locationJSON);
-            return locJN;
+            return locationJSON;
         }
         console.log("JavaScriptを実行しています");
     </script>
