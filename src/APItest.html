@@ -43,6 +43,7 @@
             const res = await fetch(url);
             const locationJSON  = await res.json();
             const lon = locationJSON.items.lon;
+            console.log(lon);
             await lon.resolve();
             return await lon;
         }
