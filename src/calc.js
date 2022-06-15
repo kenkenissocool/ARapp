@@ -57,7 +57,7 @@ export class CalcVR {
     }
   }
 }
-
+a
 let coordinates = [];
 
 window.onload = async () => {
@@ -116,9 +116,9 @@ function renderPlaces(places, pos) {
     model2.setAttribute("material", `color:red`);
     model2.setAttribute(
       "gps-entity-place",
-      `latitude: ${cal.splitsLat[0]}; longitude: ${cal.splitsLon[0]};`
+      `latitude: ${cal.splitsLat[3]}; longitude: ${cal.splitsLon[3]};`
     );
-    model2.setAttribute("scale", `${cal.objectSize}`);
+    model2.setAttribute("scale", "50 50 50");
     model2.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
