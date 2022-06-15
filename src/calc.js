@@ -114,6 +114,7 @@ function renderPlaces(places, pos) {
 
     let model2 = document.createElement("a-box");
     model2.setAttribute("material", `color:red`);
+    model.setAttribute("look-at", "[gps-camera]");
     model2.setAttribute(
       "gps-entity-place",
       `latitude: ${cal.splitsLat[0]}; longitude: ${cal.splitsLon[0]};`
