@@ -26,6 +26,8 @@ export class CalcVR {
       this.splitsLat.push(currentPosition[0] + distanceLat*t);
       this.splitsLon.push(currentPosition[1] + distanceLon*t);
     }
+    console.log(this.splitsLat[0]);
+    console.log(this.splitsLon[0]);
   }
 
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
