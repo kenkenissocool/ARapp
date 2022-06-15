@@ -26,8 +26,6 @@ export class CalcVR {
       this.splitsLat.push(currentPosition[0] + distanceLat*t);
       this.splitsLon.push(currentPosition[1] + distanceLon*t);
     }
-    console.log(this.splitsLat);
-    console.log(this.splitsLon);
   }
 
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
@@ -112,20 +110,35 @@ function renderPlaces(places, pos) {
 
     scene.appendChild(model);
 
-    let model2 = document.createElement("a-box");
-    model2.setAttribute("material", `color:red`);
-    model2.setAttribute(
-      "gps-entity-place",
-      `latitude: ${cal.splitsLat[1]}; longitude: ${cal.splitsLon[1]};`
-    );
-    model2.setAttribute("scale", `${cal.objectSize}`);
-    model2.addEventListener("loaded", () => {
-      window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-    });
+    for (let i = 0; i < 10; i++) {
+      let model2 = document.createElement("a-box");//for文で10個分表示させる
+      model2.setAttribute("material", `color:red`);
+      model2.setAttribute(
+        "gps-entity-place",
+        `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
+      );
+      model2.setAttribute("scale", `${cal.objectSize}`);
+      model2.addEventListener("loaded", () => {
+        window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+      });
 
-    console.log(cal.objectSize);
+      scene.appendChild(model2);
+    }
 
-    scene.appendChild(model2);
+    // let model2 = document.createElement("a-box");//for文で10個分表示させる
+    // model2.setAttribute("material", `color:red`);
+    // model2.setAttribute(
+    //   "gps-entity-place",
+    //   `latitude: ${cal.splitsLat[1]}; longitude: ${cal.splitsLon[1]};`
+    // );
+    // model2.setAttribute("scale", `${cal.objectSize}`);
+    // model2.addEventListener("loaded", () => {
+    //   window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+    // });
+
+    // console.log(cal.objectSize);
+
+    // scene.appendChild(model2);
   });
 }
 var options = {
