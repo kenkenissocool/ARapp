@@ -131,7 +131,7 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${cal.splitsLat[1]}; longitude: ${cal.splitsLon[1]};`
     );
-    model2.setAttribute("scale", `50 50 50`);
+    model2.setAttribute("scale", `5 5 5`);
     model2.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
@@ -143,7 +143,7 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${cal.splitsLat[2]}; longitude: ${cal.splitsLon[2]};`
     );
-    model3.setAttribute("scale", `10 10 10`);
+    model3.setAttribute("scale", `50 50 50`);
     model3.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
