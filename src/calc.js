@@ -20,8 +20,8 @@ export class CalcVR {
     this.currentPosition = currentPosiArg;
   }
   calcBetween(currentPosition, targetPosition){
-    const distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/10;
-    const distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/10;
+    const distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/100;
+    const distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/100;
     for (let t = 0; t < 10; t++) {
       this.splitsLat.push(currentPosition[0] + distanceLat*t);
       this.splitsLon.push(currentPosition[1] + distanceLon*t);
@@ -117,7 +117,8 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${cal.splitsLat[1]}; longitude: ${cal.splitsLon[1]};`
     );
-    model2.setAttribute("scale", `5 5 5`);
+    model2.setAttribute("wireframe", "true");
+    model2.setAttribute("scale", `10 10 10`);
     model2.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
@@ -146,7 +147,7 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${cal.splitsLat[2]}; longitude: ${cal.splitsLon[2]};`
     );
-    model3.setAttribute("scale", `50 50 50`);
+    model3.setAttribute("scale", `25 25 25`);
     model3.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
@@ -158,7 +159,7 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${cal.splitsLat[3]}; longitude: ${cal.splitsLon[3]};`
     );
-    model4.setAttribute("scale", `115 115 115`);
+    model4.setAttribute("scale", `50 50 50`);
     model4.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
