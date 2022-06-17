@@ -149,8 +149,6 @@ function renderPlaces(places, pos) {
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
-      console.log(i*5);
-
       scene.appendChild(model2);
     }
     // let model4 = document.createElement("a-box");//for文で10個分表示させるhe
