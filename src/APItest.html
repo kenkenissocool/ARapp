@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver27
+    <p>APIをテストするページver29
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -32,6 +32,7 @@
             const place = document.getElementById("plase").value;
             const URL = urlTemp + place;
             let JN = callAPIOCI(URL);
+            let lon = JN[2];
             document.getElementById("resp").textContent = JN;
             console.log(JN);
         }
@@ -46,12 +47,9 @@
                     if (xmlhttp.status == 200 ){
                         const jsonObj = JSON.parse(xmlhttp.responseText);
                         const items = jsonObj.items
-                        const lon = items.lon;
-                        const lat = items.lat;
                         console.log(items);
                         console.log(jsonObj);
-                        console.log(lon);
-                        return lon;
+                        return items;
                     }else{
                         return 0;
                     }
