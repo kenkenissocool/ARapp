@@ -1,0 +1,47 @@
+<script>
+    let timer;
+    let lastPos;
+  
+    AFRAME.registerComponent('marker', {
+      init: function () {
+        const marker = this.el;
+        const text = document.querySelector('a-text');
+  
+        marker.addEventListener('markerFound', function () {
+          clearInterval(timer);
+          timer = setInterval(() => {
+            const pos = marker.getAttribute('position');
+  
+            if (lastPos) {
+              const diffX = pos.x - lastPos.x;
+              const diffY = pos.y - lastPos.y;
+              const diffZ = pos.z - lastPos.z;
+  
+              const diff = Math.sqrt(Math.pow(diffX * 10, 2) + Math.pow(diffY * 10, 2) + Math.pow(diffZ * 10, 2));
+  
+              if (diff > .1) {
+                text.setAttribute('color', 'blue');
+                text.setAttribute('value', 'MOVE');
+              } else {
+                text.setAttribute('color', 'red');
+                text.setAttribute('value', 'STOP');
+              }
+            }
+  
+            lastPos = Object.assign({}, pos);
+          }, 100);
+        });
+  
+        marker.addEventListener('markerLost', function () {
+  
+        });
+      }
+    });
+  </script>
+  <a-scene embedded arjs="debugUIEnabled: false" vr-mode-ui="enabled: false" physics="debug: true">
+    <a-marker marker type='pattern' url='./pattern.patt'>
+      <a-box width="1" depth="1" height="1" wireframe="true" position=".1 0 -.45"></a-box>
+      <a-text align="center" position="0 1 0" value="STOP"></a-text>
+    </a-marker>
+    <a-entity camera></a-entity>
+  </a-scene>
