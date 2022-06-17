@@ -10,6 +10,8 @@ export class CalcVR {
     this.newDistance = 800;
     this.splitsLat = [];
     this.splitsLon = [];
+    this.distanceLat = 0;
+    this.distanceLon = 0;
   }
 
   calcDist(currentPosiArg, targetPosition) {
@@ -20,8 +22,8 @@ export class CalcVR {
     this.currentPosition = currentPosiArg;
   }
   calcBetween(currentPosition, targetPosition){
-    const distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/20;
-    const distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/20;
+    this.distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/20;
+    this.distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/20;
     for (let t = 0; t < 10; t++) {
       this.splitsLat.push(currentPosition[0] + distanceLat*t);
       this.splitsLon.push(currentPosition[1] + distanceLon*t);
