@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver24
+    <p>APIをテストするページver25
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -36,12 +36,23 @@
             console.log(JN);
         }
         async function callAPIOCI(url){
-            const res = await fetch(url);
-            const locationJSON  = await res.json();
-            console.log(locationJSON);
-            const object = JSON.parse(locationJSON);
-            console.log(object)
-            return locationJSON;
+            const xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.open("GET",url);
+            xmlhttp.send();
+
+            xmlhttp.onreadystatechange = function(){
+                if (xmlhttp.readyState == 4){
+                    if (xmlhttp.status == 200 ){
+                        const jsonObj = JSON.parse(xmlhttp.responseText);
+                        return jsonObj;
+                    }else{
+                        return 0;
+                    }
+                }else{
+                    return 0;
+                }
+            }
         }
         console.log("JavaScriptを実行しています");
     </script>
