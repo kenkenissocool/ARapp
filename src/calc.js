@@ -136,7 +136,7 @@ function renderPlaces(places, pos) {
     //   window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     // });
     // scene.appendChild(model3);
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
     //   let mod = eval("model" + i);//iを使ったmodel[i]で被らないようにしようとしている。
       let model2 = document.createElement("a-box");//for文で10個分表示させる
       model2.setAttribute("material", `color:red`);
