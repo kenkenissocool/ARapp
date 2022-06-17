@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver42
+    <p>APIをテストするページver43
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -31,7 +31,7 @@
             const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
             const place = document.getElementById("plase").value;
             const URL = urlTemp + place;
-            let JN = callAPIOCI(URL);
+            const JN = callAPIOCI(URL);
             
             console.log(JN);
         }
@@ -48,7 +48,7 @@
                         const jsonObj = JSON.stringify(xmlhttp.responseText);
                         const Obj = JSON.parse(itemsJSON);
                         const items = Obj.items;
-                        const lat = items["lat"]
+                        const lat = items[2]
                         console.log(lat);
                         console.log(jsonObj);
                         document.getElementById("resp").textContent = lat;
