@@ -45,8 +45,8 @@
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState == 4){
                     if (xmlhttp.status == 200 ){
-                        const jsonObj = JSON.stringify(xmlhttp.responseText);
-                        const items = jsonObj.items
+                        const jsonObj = JSON.items.stringify(xmlhttp.responseText);
+                        const items = jsonObj
                         console.log(items);
                         console.log(jsonObj);
                         return items;
