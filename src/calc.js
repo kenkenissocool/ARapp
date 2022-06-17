@@ -138,6 +138,7 @@ function renderPlaces(places, pos) {
     //   window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     // });
     // scene.appendChild(model3);
+
     for (let i = 0; i < 20; i++) {
     //   let mod = eval("model" + i);//iを使ったmodel[i]で被らないようにしようとしている。
       let model2 = document.createElement("a-box");
@@ -153,6 +154,7 @@ function renderPlaces(places, pos) {
       });
       scene.appendChild(model2);
     }
+
     // let model4 = document.createElement("a-box");//for文で10個分表示させるhe
     // model4.setAttribute("material", `color:red`);
     // model4.setAttribute(
