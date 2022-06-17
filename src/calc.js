@@ -124,7 +124,18 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model2);
 
-    
+    let model3 = document.createElement("a-box");//for文で10個分表示させるhe
+    model3.setAttribute("material", `color:blue`);
+    model3.setAttribute(
+      "gps-entity-place",
+      `latitude: ${cal.splitsLat[2]}; longitude: ${cal.splitsLon[2]};`
+    );
+    model3.setAttribute("wireframe", "true");
+    model3.setAttribute("scale", `25 25 25`);
+    model3.addEventListener("loaded", () => {
+      window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+    });
+    scene.appendChild(model3);
     // for (let i = 0; i < 10; i++) {
     ////   let mod = eval("model" + i);//iを使ったmodel[i]で被らないようにしようとしている。
     //   let model2 = document.createElement("a-box");//for文で10個分表示させる
@@ -141,19 +152,6 @@ function renderPlaces(places, pos) {
 
     //   scene.appendChild(model2);
     // }
-    let model3 = document.createElement("a-box");//for文で10個分表示させるhe
-    model3.setAttribute("material", `color:blue`);
-    model3.setAttribute(
-      "gps-entity-place",
-      `latitude: ${cal.splitsLat[2]}; longitude: ${cal.splitsLon[2]};`
-    );
-    model3.setAttribute("wireframe", "true");
-    model3.setAttribute("scale", `25 25 25`);
-    model3.addEventListener("loaded", () => {
-      window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-    });
-    scene.appendChild(model3);
-
     let model4 = document.createElement("a-box");//for文で10個分表示させるhe
     model4.setAttribute("material", `color:red`);
     model4.setAttribute(

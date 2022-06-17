@@ -14,12 +14,10 @@
               init: function () {
                 const marker = this.el;
                 const text = document.querySelector('a-text');
-            
                 marker.addEventListener('markerFound', function () {
                   clearInterval(timer);
                   timer = setInterval(() => {
                     const pos = marker.getAttribute('position');
-                
                     if (lastPos) {
                       const diffX = pos.x - lastPos.x;
                       const diffY = pos.y - lastPos.y;
@@ -39,9 +37,7 @@
                     lastPos = Object.assign({}, pos);
                   }, 100);
                 });
-            
                 marker.addEventListener('markerLost', function () {
-                
                 });
               }
             });
