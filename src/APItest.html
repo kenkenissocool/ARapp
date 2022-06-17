@@ -47,7 +47,7 @@
                         const itemsJSON = xmlhttp.responseText;
                         const jsonObj = JSON.stringify(xmlhttp.responseText);
                         const Obj = JSON.parse(itemsJSON);
-                        const lat2 = Obj.items[lat];
+                        const lat2 = Obj.items;
                         console.log(lat2);
                         console.log(jsonObj);
                         document.getElementById("resp").textContent = lat2;
