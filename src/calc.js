@@ -131,14 +131,14 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${cal.splitsLat[1]}; longitude: ${cal.splitsLon[1]};`
     );
-    model2.setAttribute("scale", `50 50 50`);
+    model2.setAttribute("scale", `5 5 5`);
     model2.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
     scene.appendChild(model2);
 
     let model3 = document.createElement("a-box");//for文で10個分表示させるhe
-    model3.setAttribute("material", `color:red`);
+    model3.setAttribute("material", `color:blue`);
     model3.setAttribute(
       "gps-entity-place",
       `latitude: ${cal.splitsLat[2]}; longitude: ${cal.splitsLon[2]};`
