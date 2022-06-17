@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver51
+    <p>APIをテストするページver52
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -48,7 +48,7 @@
                         const jsonObj = JSON.stringify(xmlhttp.responseText);
                         const Obj = JSON.parse(itemsJSON);
                         const lat2 = Obj.items;
-                        console.log(lat2[0][lat]);
+                        console.log(lat2[0]["lat"]);
                         console.log(jsonObj);
                         document.getElementById("resp").textContent = lat2;
                         return jsonObj;
