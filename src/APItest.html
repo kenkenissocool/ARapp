@@ -45,7 +45,8 @@
                 if (xmlhttp.readyState == 4){
                     if (xmlhttp.status == 200 ){
                         const jsonObj = JSON.parse(xmlhttp.responseText);
-                        return jsonObj;
+                        const items = jsonObj.items
+                        return items;
                     }else{
                         return 0;
                     }
