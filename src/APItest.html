@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver38
+    <p>APIをテストするページver39
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -46,7 +46,7 @@
                     if (xmlhttp.status == 200 ){
                         const itemsJSON = xmlhttp.responseText;
                         const jsonObj = JSON.stringify(xmlhttp.responseText);
-                        const Obj = JOSN.parse(itemsJSON);
+                        const Obj = JSON.parse(itemsJSON);
                         const lat = Obj.item;
                         console.log(lat);
                         console.log(jsonObj);
