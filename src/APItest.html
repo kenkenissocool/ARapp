@@ -42,8 +42,8 @@
         async function callAPIOCI(url){
             const res = await fetch(url);
             const locationJSON  = await res.json();
+            console.log(locationJSON);
             const lon = locationJSON.items.lon;
-            console.log(lon);
             await lon.resolve();
             return await lon;
         }
