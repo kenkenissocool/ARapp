@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver53
+    <p>APIをテストするページver1
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -32,7 +32,7 @@
             const place = document.getElementById("plase").value;
             const URL = urlTemp + place;
             const JN = callAPIOCI(URL);
-            
+            document.getElementById("resp").textContent = JN ;
             console.log(JN);
         }
         function callAPIOCI(url){
@@ -53,7 +53,7 @@
                         const location = lat +", " + lon;
                         console.log(lat);
                         console.log(jsonObj);
-                        document.getElementById("resp").textContent = location ;
+                        
                         return location;
                     }else{
                         return 0;
