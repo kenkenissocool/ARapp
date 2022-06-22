@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver.3
+    <p>APIをテストするページver.4
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -29,6 +29,8 @@
     <script type="text/javascript">
 
         function callAPIOCI(url){
+            let lat;
+            let lon
             const xmlhttp = new XMLHttpRequest();
 
             xmlhttp.open("GET",url);
@@ -41,8 +43,8 @@
                         const jsonObj = JSON.stringify(xmlhttp.responseText);
                         const Obj = JSON.parse(itemsJSON);
                         const items = Obj.items;
-                        const lat = items[0]["lat"];
-                        const lon = items[0]["lon"];
+                        lat = items[0]["lat"];
+                        lon = items[0]["lon"];
                         const location = lat +", " + lon;
                         console.log(lat);
                         console.log(jsonObj);
