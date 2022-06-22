@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>APIをテストするページver1
+    <p>APIをテストするページver2
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -27,14 +27,7 @@
     <input type="button" value="選択" onclick="touchAPI1()"/>
 
     <script type="text/javascript">
-        function touchAPI1(){
-            const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
-            const place = document.getElementById("plase").value;
-            const URL = urlTemp + place;
-            const JN = callAPIOCI(URL);
-            document.getElementById("resp").textContent = JN ;
-            console.log(JN);
-        }
+
         function callAPIOCI(url){
             const xmlhttp = new XMLHttpRequest();
 
@@ -63,6 +56,16 @@
                 }
             }
         }
+
+        function touchAPI1(){
+            const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
+            const place = document.getElementById("plase").value;
+            const URL = urlTemp + place;
+            const JN = callAPIOCI(URL);
+            document.getElementById("resp").textContent = JN ;
+            console.log(JN);
+        }
+        
         console.log("JavaScriptを実行しています");
     </script>
 </html>
