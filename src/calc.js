@@ -21,6 +21,7 @@ export class CalcVR {
     this.bearing = current.finalBearingTo(target);
     this.currentPosition = currentPosiArg;
   }
+
   calcBetween(currentPosition, targetPosition){
     this.distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/20;
     this.distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/20;
@@ -62,7 +63,7 @@ let coordinates = [];
 
 window.onload = async () => {
   console.log("on loaded");
-  const res = await fetch("ors-route_1654058631736.json"); //awaitして、ors-routeを撮ってきてresに
+  const res = await fetch("ors-route_1655877324529.json"); //awaitして、ors-routeを撮ってきてresに
   const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
   const coords = json.routes[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
@@ -125,48 +126,9 @@ function renderPlaces(places, pos) {
       });
       scene.appendChild(model2);
     }
-    
-
-    // let model2 = document.createElement("a-box");//for文で10個分表示させるhe
-    // model2.setAttribute("material", `color:red`);あ
-    // model2.setAttribute(
-    //   "gps-entity-place",
-    //   `latitude: ${cal.splitsLat[1]}; longitude: ${cal.splitsLon[1]};`
-    // );
-    // model2.setAttribute("wireframe", "true");
-    // model2.setAttribute("scale", `10 10 10`);
-    // model2.addEventListener("loaded", () => {
-    //   window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-    // });
-    // scene.appendChild(model2);
-
-    // let model3 = document.createElement("a-box");//for文で10個分表示させるhe
-    // model3.setAttribute("material", `color:blue`);
-    // model3.setAttribute(
-    //   "gps-entity-place",
-    //   `latitude: ${cal.splitsLat[2]}; longitude: ${cal.splitsLon[2]};`
-    // );
-    // model3.setAttribute("wireframe", "true");
-    // model3.setAttribute("scale", `25 25 25`);
-    // model3.addEventListener("loaded", () => {
-    //   window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-    // });
-    // scene.appendChild(model3);
-
-    // let model4 = document.createElement("a-box");//for文で10個分表示させるhe
-    // model4.setAttribute("material", `color:red`);
-    // model4.setAttribute(
-    //   "gps-entity-place",
-    //   `latitude: ${cal.splitsLat[3]}; longitude: ${cal.splitsLon[3]};`
-    // );
-    // model4.setAttribute("scale", `50 50 50`);
-    // model4.addEventListener("loaded", () => {
-    //   window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
-    // });
-    // scene.appendChild(model4);
-   
   });
 }
+
 var options = {
   enableHighAccuracy: true,
   timeout: 50000,
