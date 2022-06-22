@@ -50,7 +50,15 @@
                         console.log(jsonObj);
                         document.getElementById("resp").textContent = location ;
                         return location;
-                        let request = new XMLHttpRequest();
+                        
+                    }else{
+                        return 0;
+                    }
+                }else{
+                    return 0;
+                }
+            }
+            let request = new XMLHttpRequest();
 
                         request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
 
@@ -73,14 +81,6 @@
                         request.send(body);
                         const geoJSON = request.responseText;
                         console.log(geoJSON);
-                    }else{
-                        return 0;
-                    }
-                }else{
-                    return 0;
-                }
-            }
-            
         }
 
         function touchAPI1(){
