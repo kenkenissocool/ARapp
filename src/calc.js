@@ -101,8 +101,8 @@ function renderPlaces(places, pos) {
   places.forEach((place) => {
     let latitude = place.location.lat;
     let longitude = place.location.lng;
-    let name = place.name;
-    id++;
+    let name = id++;
+    
     let modelName = place.modelName;
     //cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
@@ -111,7 +111,7 @@ function renderPlaces(places, pos) {
     cal.calcSizeDist(cal.distance);
 
     let model = document.createElement("a-text");
-    model.setAttribute("value",`${id}`);
+    model.setAttribute("value", `${name}`);
     model.setAttribute("look-at", "[gps-camera]");
     model.setAttribute(
       "gps-entity-place",
