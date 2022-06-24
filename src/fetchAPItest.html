@@ -73,7 +73,7 @@
                         };
                         console.log(value);
 
-                        const body = '{"coordinates":[[140.10709494352344, 36.08612344366146],'+ value + ']}';
+                        const body = '{"coordinates":[[140.10709494352344, 36.08612344366146],['+ value + ']]}';
 
                         request.send(body);
                         const geoJSON = request.responseText;
