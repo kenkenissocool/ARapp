@@ -39,9 +39,9 @@ export class CalcVR {
 
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = currentPosition[0]-this.newPosition[0]/20;
-    this.distanceLon = currentPosition[1]-this.newPosition[1]/20;
-    for (let t = 0; t < 20; t++) {
+    this.distanceLat = currentPosition[0]-this.newPosition[0]/10;
+    this.distanceLon = currentPosition[1]-this.newPosition[1]/10;
+    for (let t = 0; t < 10; t++) {
       this.splitsLat.push(currentPosition[0] - this.distanceLat*t);
       this.splitsLon.push(currentPosition[1] - this.distanceLon*t);
     }
@@ -123,7 +123,7 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       let model2 = document.createElement("a-box");
       model2.setAttribute("material", `color:red`);
       model2.setAttribute(
@@ -131,7 +131,7 @@ function renderPlaces(places, pos) {
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
       );
       model2.setAttribute("wireframe", "true");
-      model2.setAttribute("scale", `${i*2} ${i*2} ${i*2}`);
+      model2.setAttribute("scale", `${i} ${i} ${i}`);
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
