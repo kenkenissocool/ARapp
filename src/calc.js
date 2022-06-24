@@ -126,6 +126,7 @@ function renderPlaces(places, pos) {
       });
       scene.appendChild(model2);
     }
+    console.log(this.newDistance);
   });
 }
 
