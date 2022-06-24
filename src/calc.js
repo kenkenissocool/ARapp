@@ -111,7 +111,7 @@ function renderPlaces(places, pos) {
     cal.calcSizeDist(cal.distance);
 
     let model = document.createElement("a-text");
-    model.setAttribute("value", `${name}`,`${id}`);
+    model.setAttribute("value",`${id}`);
     model.setAttribute("look-at", "[gps-camera]");
     model.setAttribute(
       "gps-entity-place",
