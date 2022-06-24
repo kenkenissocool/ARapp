@@ -47,12 +47,14 @@ export class CalcVR {
     }
   }
   calcSizeDist(distance) {
-    if (distance <= 100 && distance >= 50) {
+    if (distance <= 100 && distance >= 0) {
       this.objectSize = "50 50 50";
-      this.newDistance = 800;
+      //this.newDistance = 800;
+      this.newDistance = distance;
     } else if (distance > 100 && distance <= 800) {
       this.objectSize = "35 35 35";
-      this.newDistance = 800 + distance / 1000;
+      //this.newDistance = 800 + distance / 1000;
+      this.newDistance = distance;
     } else if (distance > 800 && distance <= 1600) {
       this.objectSize = "20 20 20";
       this.newDistance = 800 + distance / 1000;
