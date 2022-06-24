@@ -119,7 +119,6 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    console.log(cal.newDistance);
     for (let i = 0; i < 20; i++) {
       let model2 = document.createElement("a-box");
       model2.setAttribute("material", `color:red`);
@@ -134,6 +133,9 @@ function renderPlaces(places, pos) {
       });
       scene.appendChild(model2);
     }
+
+    console.log(cal.newDistance);
+    
   });
 }
 
