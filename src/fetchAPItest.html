@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>fetchAPIをテストするページver.1
+    <p>fetchAPIをテストするページver.2
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -34,7 +34,7 @@
 
             const locationAPI = async(urlz) =>{
                 const response = await fetch(urlz,{method : "get"});
-                const json = response.JSON();
+                const json = response.json();
                 if (response.status == 200){
                     return Promise.resolve(json);
                 }else{
