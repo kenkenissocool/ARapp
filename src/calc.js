@@ -28,26 +28,6 @@ export class CalcVR {
   //     this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
   //   }
   // }
-  calcSizeDist(distance) {
-    if (distance <= 100 && distance >= 0) {
-      this.objectSize = "20 20 20";
-      //this.newDistance = 800;
-      this.newDistance = distance;
-    } else if (distance > 100 && distance <= 800) {
-      this.objectSize = "15 15 15";
-      //this.newDistance = 800 + distance / 1000;
-      this.newDistance = distance;
-    } else if (distance > 800 && distance <= 1600) {
-      this.objectSize = "10 10 10";
-      this.newDistance = 800 + distance / 1000;
-    } else if (distance > 1600 && distance <= 2000) {
-      this.objectSize = "5 5 5";
-      this.newDistance = 800 + distance / 1000;
-    } else if (distance > 2000) {
-      this.objectSize = "5 5 5";
-      this.newDistance = 800 + distance / 1000;
-    }
-  }
 
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
     const current = new LatLon(currentPosition[0], currentPosition[1]);
@@ -62,18 +42,37 @@ export class CalcVR {
     this.distanceLat = Math.abs(currentPosition[0]-this.newPosition[0])/20;
     this.distanceLon = Math.abs(currentPosition[1]-this.newPosition[1])/20;
     for (let t = 0; t < 20; t++) {
-      this.splitsLat.push(currentPosition[0] - this.distanceLat*t);
-      this.splitsLon.push(currentPosition[1] - this.distanceLon*t);
+      this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
+      this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
     }
   }
-  
+  calcSizeDist(distance) {
+    if (distance <= 100 && distance >= 0) {
+      this.objectSize = "50 50 50";
+      //this.newDistance = 800;
+      this.newDistance = distance;
+    } else if (distance > 100 && distance <= 800) {
+      this.objectSize = "45 45 45";
+      //this.newDistance = 800 + distance / 1000;
+      this.newDistance = distance;
+    } else if (distance > 800 && distance <= 1600) {
+      this.objectSize = "30 30 30";
+      this.newDistance = 800 + distance / 1000;
+    } else if (distance > 1600 && distance <= 2000) {
+      this.objectSize = "15 15 15";
+      this.newDistance = 800 + distance / 1000;
+    } else if (distance > 2000) {
+      this.objectSize = "5 5 5";
+      this.newDistance = 800 + distance / 1000;
+    }
+  }
 }
 
 let coordinates = [];
 
 window.onload = async () => {
   console.log("on loaded");
-  const res = await fetch("04.json"); //awaitして、ors-routeを撮ってきてresに
+  const res = await fetch("05.json"); //awaitして、ors-routeを撮ってきてresに
   const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
   const coords = json.routes[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
