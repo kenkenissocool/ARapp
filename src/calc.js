@@ -44,16 +44,16 @@ export class CalcVR {
       this.objectSize = "50 50 50";
       this.newDistance = 800;
     } else if (distance > 100 && distance <= 800) {
-      this.objectSize = "45 45 45";
+      this.objectSize = "35 35 35";
       this.newDistance = 800 + distance / 1000;
     } else if (distance > 800 && distance <= 1600) {
-      this.objectSize = "40 40 40";
+      this.objectSize = "20 20 20";
       this.newDistance = 800 + distance / 1000;
     } else if (distance > 1600 && distance <= 2000) {
-      this.objectSize = "30 30 30";
+      this.objectSize = "10 10 10";
       this.newDistance = 800 + distance / 1000;
     } else if (distance > 2000) {
-      this.objectSize = "20 20 20";
+      this.objectSize = "5 5 5";
       this.newDistance = 800 + distance / 1000;
     }
   }
@@ -63,7 +63,7 @@ let coordinates = [];
 
 window.onload = async () => {
   console.log("on loaded");
-  const res = await fetch("ors-route_1655878121984.json"); //awaitして、ors-routeを撮ってきてresに
+  const res = await fetch("ors-route_1656052431785.json"); //awaitして、ors-routeを撮ってきてresに
   const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
   const coords = json.routes[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
