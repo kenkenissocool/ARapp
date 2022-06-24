@@ -137,9 +137,8 @@ function renderPlaces(places, pos) {
       });
       scene.appendChild(model2);
 
-    console.log(cal.newDistance);
     }
-    
+    console.log(cal.newDistance);
   });
 }
 
