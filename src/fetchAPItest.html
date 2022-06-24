@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>fetchAPIをテストするページver.2
+    <p>fetchAPIをテストするページver.3
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -45,8 +45,8 @@
             locationAPI(url)
                 .then(function(data){
                     const jsonObj = JSON.stringify(data);
-                    const Obj = JSON.parse(data);
-                    const items = Obj.items;
+                    //const Obj = JSON.parse(data);
+                    const items = data.items;
                     lat = items[0]["lat"];
                     lon = items[0]["lon"];
                     const location = lat +", " + lon;
