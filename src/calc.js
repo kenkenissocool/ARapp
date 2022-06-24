@@ -8,8 +8,6 @@ export class CalcVR {
     this.currentPosition = [0, 0];
     this.objectSize = "0, 0, 0";
     this.newDistance = 800;
-    this.splitsLat = [];
-    this.splitsLon = [];
     this.distanceLat = 0;
     this.distanceLon = 0;
   }
@@ -39,6 +37,8 @@ export class CalcVR {
     );
     this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
 
+    this.splitsLat = [];
+    this.splitsLon = [];
     this.distanceLat = Math.abs(currentPosition[0]-this.newPosition[0])/20;
     this.distanceLon = Math.abs(currentPosition[1]-this.newPosition[1])/20;
     for (let t = 0; t < 20; t++) {
