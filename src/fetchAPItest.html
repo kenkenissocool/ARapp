@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>fetchAPIをテストするページver.3
+    <p>fetchAPIをテストするページver.4
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -44,18 +44,19 @@
 
             locationAPI(url)
                 .then(function(data){
+                    return new Promise(function (resolve,reject){
                     const jsonObj = JSON.stringify(data);
-                    //const Obj = JSON.parse(data);
                     const items = data.items;
                     lat = items[0]["lat"];
                     lon = items[0]["lon"];
-                    const location = lat +", " + lon;
+                    const location = lon +", " + lat;
                     console.log(lat);
                     console.log(jsonObj);
                     document.getElementById("resp").textContent = location ;
-                });
-
-            let request = new XMLHttpRequest();
+                    resolve(location);});
+                })
+                .then(function(value){
+                    let request = new XMLHttpRequest();
 
                         request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
 
@@ -70,14 +71,19 @@
                             console.log('Body:', this.responseText);
                         }
                         };
-                        console.log(lon);
-                        console.log(lat);
+                        console.log(value);
 
-                        const body = '{"coordinates":[[140.10709494352344, 36.08612344366146],[140.10556,36.10163]]}';
+                        const body = '{"coordinates":[[140.10709494352344, 36.08612344366146],'+ value + ']}';
 
                         request.send(body);
                         const geoJSON = request.responseText;
                         console.log(geoJSON);
+                })
+                .catch((err) =>{
+                    console.log(err);
+                });
+
+            
         }
 
         function touchAPI1(){
