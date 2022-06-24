@@ -52,14 +52,14 @@ export class CalcVR {
       //this.newDistance = 800;
       this.newDistance = distance;
     } else if (distance > 100 && distance <= 800) {
-      this.objectSize = "35 35 35";
+      this.objectSize = "45 45 45";
       //this.newDistance = 800 + distance / 1000;
       this.newDistance = distance;
     } else if (distance > 800 && distance <= 1600) {
-      this.objectSize = "20 20 20";
+      this.objectSize = "30 30 30";
       this.newDistance = 800 + distance / 1000;
     } else if (distance > 1600 && distance <= 2000) {
-      this.objectSize = "10 10 10";
+      this.objectSize = "15 15 15";
       this.newDistance = 800 + distance / 1000;
     } else if (distance > 2000) {
       this.objectSize = "5 5 5";
@@ -96,11 +96,13 @@ function renderPlaces(places, pos) {
   let scene = document.querySelector("a-scene");
   var crd = pos.coords;
   let cal = new CalcVR();
+  let id = 0;
 
   places.forEach((place) => {
     let latitude = place.location.lat;
     let longitude = place.location.lng;
     let name = place.name;
+    id++;
     let modelName = place.modelName;
     //cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
@@ -109,7 +111,7 @@ function renderPlaces(places, pos) {
     cal.calcSizeDist(cal.distance);
 
     let model = document.createElement("a-text");
-    model.setAttribute("value", `${name}`);
+    model.setAttribute("value", `${name}`,`${id}`);
     model.setAttribute("look-at", "[gps-camera]");
     model.setAttribute(
       "gps-entity-place",
