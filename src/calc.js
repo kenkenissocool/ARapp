@@ -28,24 +28,6 @@ export class CalcVR {
   //     this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
   //   }
   // }
-
-  calcNewPosition(currentPosition, bearing, newTargetToDistance) {
-    const current = new LatLon(currentPosition[0], currentPosition[1]);
-    const calculatedlced = current.destinationPoint(
-      newTargetToDistance,
-      bearing
-    );
-    this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
-
-    this.splitsLat = [];
-    this.splitsLon = [];
-    this.distanceLat = Math.abs(currentPosition[0]-this.newPosition[0])/20;
-    this.distanceLon = Math.abs(currentPosition[1]-this.newPosition[1])/20;
-    for (let t = 0; t < 20; t++) {
-      this.splitsLat.push(currentPosition[0] - this.distanceLat*t);
-      this.splitsLon.push(currentPosition[1] - this.distanceLon*t);
-    }
-  }
   calcSizeDist(distance) {
     if (distance <= 100 && distance >= 0) {
       this.objectSize = "20 20 20";
@@ -66,6 +48,25 @@ export class CalcVR {
       this.newDistance = 800 + distance / 1000;
     }
   }
+
+  calcNewPosition(currentPosition, bearing, newTargetToDistance) {
+    const current = new LatLon(currentPosition[0], currentPosition[1]);
+    const calculatedlced = current.destinationPoint(
+      newTargetToDistance,
+      bearing
+    );
+    this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
+
+    this.splitsLat = [];
+    this.splitsLon = [];
+    this.distanceLat = Math.abs(currentPosition[0]-this.newPosition[0])/20;
+    this.distanceLon = Math.abs(currentPosition[1]-this.newPosition[1])/20;
+    for (let t = 0; t < 20; t++) {
+      this.splitsLat.push(currentPosition[0] - this.distanceLat*t);
+      this.splitsLon.push(currentPosition[1] - this.distanceLon*t);
+    }
+  }
+  
 }
 
 let coordinates = [];
