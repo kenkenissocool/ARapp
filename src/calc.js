@@ -22,14 +22,14 @@ export class CalcVR {
     this.currentPosition = currentPosiArg;
   }
 
-  calcBetween(currentPosition, targetPosition){
-    this.distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/20;
-    this.distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/20;
-    for (let t = 0; t < 10; t++) {
-      this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
-      this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
-    }
-  }
+  // calcBetween(currentPosition, targetPosition){
+  //   this.distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/20;
+  //   this.distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/20;
+  //   for (let t = 0; t < 10; t++) {
+  //     this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
+  //     this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
+  //   }
+  // }
 
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
     const current = new LatLon(currentPosition[0], currentPosition[1]);
@@ -38,6 +38,13 @@ export class CalcVR {
       bearing
     );
     this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
+
+    this.distanceLat = Math.abs(currentPosition[0]-newPosition[0])/20;
+    this.distanceLon = Math.abs(currentPosition[1]-newPosition[1])/20;
+    for (let t = 0; t < 20; t++) {
+      this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
+      this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
+    }
   }
   calcSizeDist(distance) {
     if (distance <= 100 && distance >= 50) {
