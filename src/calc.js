@@ -22,14 +22,14 @@ export class CalcVR {
     this.currentPosition = currentPosiArg;
   }
 
-  calcBetween(currentPosition, targetPosition){
-    this.distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/20;
-    this.distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/20;
-    for (let t = 0; t < 10; t++) {
-      this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
-      this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
-    }
-  }
+  // calcBetween(currentPosition, targetPosition){
+  //   this.distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/20;
+  //   this.distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/20;
+  //   for (let t = 0; t < 10; t++) {
+  //     this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
+  //     this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
+  //   }
+  // }
 
   calcNewPosition(currentPosition, bearing, newTargetToDistance) {
     const current = new LatLon(currentPosition[0], currentPosition[1]);
@@ -38,6 +38,13 @@ export class CalcVR {
       bearing
     );
     this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
+
+    this.distanceLat = Math.abs(currentPosition[0]-newPosition[0])/20;
+    this.distanceLon = Math.abs(currentPosition[1]-newPosition[1])/20;
+    for (let t = 0; t < 20; t++) {
+      this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
+      this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
+    }
   }
   calcSizeDist(distance) {
     if (distance <= 100 && distance >= 50) {
@@ -93,7 +100,7 @@ function renderPlaces(places, pos) {
     let longitude = place.location.lng;
     let name = place.name;
     let modelName = place.modelName;
-    cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
+    //cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
     cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
@@ -112,6 +119,7 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
+    console.log(cal.newDistance);
     for (let i = 0; i < 20; i++) {
       let model2 = document.createElement("a-box");
       model2.setAttribute("material", `color:red`);
