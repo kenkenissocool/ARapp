@@ -100,7 +100,7 @@ function renderPlaces(places, pos) {
     let longitude = place.location.lng;
     let name = place.name;
     let modelName = place.modelName;
-    cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
+    //cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
     cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
