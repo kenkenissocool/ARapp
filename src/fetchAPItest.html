@@ -45,14 +45,14 @@
             locationAPI(url)
                 .then(function(data){
                     const jsonObj = JSON.stringify(data);
-                    const Obj = JSON.parse(data);
-                    const items = Obj.items;
-                    lat = items[0]["lat"];
-                    lon = items[0]["lon"];
-                    const location = lat +", " + lon;
-                    console.log(lat);
+                    //const Obj = JSON.parse(data);
+                    //const items = data.items;
+                    //lat = items[0]["lat"];
+                    //lon = items[0]["lon"];
+                    //const location = lat +", " + lon;
+                    //console.log(lat);
                     console.log(jsonObj);
-                    document.getElementById("resp").textContent = location ;
+                    //document.getElementById("resp").textContent = location ;
                 });
 
             let request = new XMLHttpRequest();
