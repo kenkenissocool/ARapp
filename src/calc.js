@@ -123,7 +123,7 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 2; i++) {
       let model2 = document.createElement("a-box");
       model2.setAttribute("material", `color:red`);
       model2.setAttribute(
