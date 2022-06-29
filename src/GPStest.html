@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>POSTAPIをテストするページ
+    <p>POSTAPIをテストするページver.2
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -44,7 +44,7 @@
 
                     // リクエストボディ
                     body: JSON.stringify(data),
-                    mode: 'cors'
+                    mode: 'no-cors'
             };
 
             fetch("https://example.com/foo.json", param)
