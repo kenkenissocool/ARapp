@@ -36,16 +36,21 @@ export class CalcVR {
       bearing
     );
     this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
+  }
 
+  connectPoints(lastPosition,target) {
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = (currentPosition[0]-this.newPosition[0])/20;
-    this.distanceLon = (currentPosition[1]-this.newPosition[1])/20;
+    this.distanceLat = (lastPosition[0]-this.newPosition[0])/20;
+    this.distanceLon = (lastPosition[1]-this.newPosition[1])/20;
     for (let t = 0; t < 20; t++) {
-      this.splitsLat.push(currentPosition[0] - this.distanceLat*t);
-      this.splitsLon.push(currentPosition[1] - this.distanceLon*t);
+      this.splitsLat.push(lastPosition[0] - this.distanceLat*t);
+      this.splitsLon.push(lastPosition[1] - this.distanceLon*t);
     }
   }
+
+
+
   calcSizeDist(distance) {
     if (distance <= 100 && distance >= 0) {
       this.objectSize = "50 50 50";
@@ -97,6 +102,8 @@ function renderPlaces(places, pos) {
   var crd = pos.coords;
   let cal = new CalcVR();
   let id = 0;
+  let lastlat = crd.latitude;
+  let lastlon = crd.longitude;
 
   places.forEach((place) => {
     let latitude = place.location.lat;
@@ -108,6 +115,7 @@ function renderPlaces(places, pos) {
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
     cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
+    cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
     cal.calcSizeDist(cal.distance);
 
     let model = document.createElement("a-text");
@@ -131,14 +139,16 @@ function renderPlaces(places, pos) {
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
       );
       // model2.setAttribute("wireframe", "true");
-      model2.setAttribute("scale", `${3} ${3} ${3}`);
+      model2.setAttribute("scale", `${1} ${1} ${1}`);
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
       scene.appendChild(model2);
       
     }
-    console.log(cal.splitsLat);
+
+    lastlat = latitude;
+    lastlon = longitude;
   });
 }
 
