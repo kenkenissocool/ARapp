@@ -39,9 +39,9 @@ export class CalcVR {
 
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = currentPosition[0]-this.newPosition[0]/10;
-    this.distanceLon = currentPosition[1]-this.newPosition[1]/10;
-    for (let t = 0; t < 10; t++) {
+    this.distanceLat = currentPosition[0]-this.newPosition[0]/5;
+    this.distanceLon = currentPosition[1]-this.newPosition[1]/5;
+    for (let t = 0; t < 5; t++) {
       this.splitsLat.push(currentPosition[0] - this.distanceLat*t);
       this.splitsLon.push(currentPosition[1] - this.distanceLon*t);
     }
@@ -123,7 +123,7 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       let model2 = document.createElement("a-box");
       model2.setAttribute("material", `color:red`);
       model2.setAttribute(
