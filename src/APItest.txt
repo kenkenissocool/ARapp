@@ -1,0 +1,3 @@
+curl -v -X POST ^
+-H "Content-Type: application/json" "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3" ^
+ -d "{\"id\":\"12\",\"name\":\"hirasuna bath\",\"lat\":\"140.1026773452759\",\"lon\":\"36.10472558492067\"}"

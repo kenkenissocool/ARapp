@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APItest</title>
+</head>
+<body>
+    <p>fetchAPIをテストするページver.5
+    </p>
+        <label for="plase">行きたい場所を選択</label>
+        <select id="plase">
+        <option value="1">粉とクリーム</option>
+        <option value="2">つくば駅</option>
+        <option value="3">春日宿舎</option>
+        <option value="4">一の矢宿舎</option>
+        <option value="5">大学会館</option>
+        <option value="6">中央図書館</option>
+        <option value="7">大学本部</option>
+        <option value="8">カスミ筑波大学店</option>
+        <option value="9">筑波大学附属病院</option>
+        <option value="10">ヒューマン･ハイ･パフォーマンス先端研究センター</option>
+        </select>
+    <br>
+    <p>返答: <span id = "resp"></p>
+    <input type="button" value="選択" onclick="touchAPI1()"/>
+
+    <script type="text/javascript">
+
+        function callAPIOCI(url){
+            let lat;
+            let lon;
+
+            const locationAPI = async(urlz) =>{
+                const response = await fetch(urlz,{method : "get"});
+                const json = response.json();
+                if (response.status == 200){
+                    return Promise.resolve(json);
+                }else{
+                    return Promise.reject(json.error);
+                }
+            }
+
+            locationAPI(url)
+                .then(function(data){
+                    return new Promise(function (resolve,reject){
+                    const jsonObj = JSON.stringify(data);
+                    const items = data.items;
+                    lat = items[0]["lat"];
+                    lon = items[0]["lon"];
+                    const location = lon +", " + lat;
+                    console.log(lat);
+                    console.log(jsonObj);
+                    document.getElementById("resp").textContent = location ;
+                    resolve(location);});
+                })
+                .then(function(value){
+                    let request = new XMLHttpRequest();
+
+                        request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
+
+                        request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
+                        request.setRequestHeader('Content-Type', 'application/json');
+                        request.setRequestHeader('Authorization', '5b3ce3597851110001cf6248a9c8937ac7a74664b0dc317c69d6c058');
+
+                        request.onreadystatechange = function () {
+                        if (this.readyState === 4) {
+                            console.log('Status:', this.status);
+                            console.log('Headers:', this.getAllResponseHeaders());
+                            console.log('Body:', this.responseText);
+                        }
+                        };
+                        console.log(value);
+
+                        const body = '{"coordinates":[[140.10709494352344, 36.08612344366146],['+ value + ']]}';
+
+                        request.send(body);
+                        const geoJSON = request.responseText;
+                        console.log(geoJSON);
+                })
+                .catch((err) =>{
+                    console.log(err);
+                });
+
+            
+        }
+
+        function touchAPI1(){
+            const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
+            const place = document.getElementById("plase").value;
+            const URL = urlTemp + place;
+            const JN = callAPIOCI(URL);
+            
+            console.log(JN);
+        }
+        
+        console.log("JavaScriptを実行しています");
+    </script>
+</html>
