@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>POSTAPIをテストするページver.2
+    <p>POSTAPIをテストするページver.3
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -49,11 +49,8 @@
 
             fetch("https://example.com/foo.json", param)
                 .then((res)=>{
-                    return( res.json() );
-                })
-                .then((json)=>{
                     document.getElementById("resp").textContent = 'success' ;
-            });
+                });
             
         }
 
