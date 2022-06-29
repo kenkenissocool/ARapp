@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>POSTAPIをテストするページver.12
+    <p>POSTAPIをテストするページver.13
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -30,11 +30,11 @@
 
         function callAPIOCI(url){
             const data = {
-                id:12,
-                name:'Tsukuba University Health Center',
-                lat: 140.10292410850528,
-                lon: 36.104851274729356
-            };
+                    'id': '14',
+                    'name': 'Tsukuba University Health Center',
+                    'lat': '140.10292410850528',
+                    'lon': '36.104851274729356'
+                };
 
             const param  = {
                     method: "POST",
@@ -53,12 +53,7 @@
                     'Content-Type': 'application/json'
                 },
                 // body: '{\n  "id": "12",\n  "name": "Tsukuba University Health Center",\n  "lat": "140.10292410850528",\n  "lon": "36.104851274729356" \n}',
-                body: JSON.stringify({
-                    'id': '13',
-                    'name': 'Tsukuba University Health Center',
-                    'lat': '140.10292410850528',
-                    'lon': '36.104851274729356'
-                })
+                body: JSON.stringify(data)
             });
             
         }
