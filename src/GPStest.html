@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>APItest</title>
+  <title>POSTAPItest</title>
 </head>
 <body>
-    <p>fetchAPIをテストするページver.5
+    <p>POSTAPIをテストするページ
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -29,70 +29,36 @@
     <script type="text/javascript">
 
         function callAPIOCI(url){
-            let lat;
-            let lon;
+            const data = {
+                'id':12,
+                'name':'Tsukuba University Health Center',
+                'lat' : 140.10292410850528,
+                'lon' : 36.104851274729356
+            };
 
-            const locationAPI = async(urlz) =>{
-                const response = await fetch(urlz,{method : "get"});
-                const json = response.json();
-                if (response.status == 200){
-                    return Promise.resolve(json);
-                }else{
-                    return Promise.reject(json.error);
-                }
-            }
+            const param  = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
 
-            locationAPI(url)
-                .then(function(data){
-                    return new Promise(function (resolve,reject){
-                    const jsonObj = JSON.stringify(data);
-                    const items = data.items;
-                    lat = items[0]["lat"];
-                    lon = items[0]["lon"];
-                    const location = lon +", " + lat;
-                    console.log(lat);
-                    console.log(jsonObj);
-                    document.getElementById("resp").textContent = location ;
-                    resolve(location);});
+                    // リクエストボディ
+                    body: JSON.stringify(data)
+            };
+
+            fetch("https://example.com/foo.json", param)
+                .then((res)=>{
+                    return( res.json() );
                 })
-                .then(function(value){
-                    let request = new XMLHttpRequest();
-
-                        request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
-
-                        request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
-                        request.setRequestHeader('Content-Type', 'application/json');
-                        request.setRequestHeader('Authorization', '5b3ce3597851110001cf6248a9c8937ac7a74664b0dc317c69d6c058');
-
-                        request.onreadystatechange = function () {
-                        if (this.readyState === 4) {
-                            console.log('Status:', this.status);
-                            console.log('Headers:', this.getAllResponseHeaders());
-                            console.log('Body:', this.responseText);
-                        }
-                        };
-                        console.log(value);
-
-                        const body = '{"coordinates":[[140.10709494352344, 36.08612344366146],['+ value + ']]}';
-
-                        request.send(body);
-                        const geoJSON = request.responseText;
-                        console.log(geoJSON);
-                })
-                .catch((err) =>{
-                    console.log(err);
-                });
-
+                .then((json)=>{
+                    document.getElementById("resp").textContent = 'success' ;
+            });
             
         }
 
         function touchAPI1(){
-            const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
-            const place = document.getElementById("plase").value;
-            const URL = urlTemp + place;
-            const JN = callAPIOCI(URL);
-            
-            console.log(JN);
+            const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3";
+            const JN = callAPIOCI(urlTemp);
         }
         
         console.log("JavaScriptを実行しています");
