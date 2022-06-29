@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>POSTAPIをテストするページver.4
+    <p>POSTAPIをテストするページver.5
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -49,7 +49,7 @@
 
             fetch("https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3", param)
                 .then((res)=>{
-                    document.getElementById("resp").textContent = 'success' ;
+                    document.getElementById("resp").textContent = res ;
                 });
             
         }
