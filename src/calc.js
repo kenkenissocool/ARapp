@@ -130,8 +130,8 @@ function renderPlaces(places, pos) {
         "gps-entity-place",
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
       );
-      model2.setAttribute("wireframe", "true");
-      model2.setAttribute("scale", `${10} ${10} ${10}`);
+      // model2.setAttribute("wireframe", "true");
+      model2.setAttribute("scale", `${3} ${3} ${3}`);
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
