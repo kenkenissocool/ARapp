@@ -47,11 +47,19 @@
                     mode: 'no-cors'
             };
 
-            fetch("https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3", param)
-                .then((res)=>{
-                    document.getElementById("resp").textContent = res ;
-                    console.log(res);
-                });
+            fetch('https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                // body: '{\n  "id": "12",\n  "name": "Tsukuba University Health Center",\n  "lat": "140.10292410850528",\n  "lon": "36.104851274729356" \n}',
+                body: JSON.stringify({
+                    'id': '13',
+                    'name': 'Tsukuba University Health Center',
+                    'lat': '140.10292410850528',
+                    'lon': '36.104851274729356'
+                })
+            });
             
         }
 
