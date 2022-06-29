@@ -136,9 +136,9 @@ function renderPlaces(places, pos) {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
       scene.appendChild(model2);
-
+      console.log(cal.splitsLat);
     }
-    console.log(cal.newDistance);
+    
   });
 }
 
