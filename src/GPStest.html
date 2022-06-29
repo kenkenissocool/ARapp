@@ -43,7 +43,8 @@
                     },
 
                     // リクエストボディ
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data),
+                    mode: 'cors'
             };
 
             fetch("https://example.com/foo.json", param)
