@@ -8,8 +8,6 @@ export class CalcVR {
     this.currentPosition = [0, 0];
     this.objectSize = "0, 0, 0";
     this.newDistance = 800;
-    this.splitsLat = [];
-    this.splitsLon = [];
     this.distanceLat = 0;
     this.distanceLon = 0;
   }
@@ -39,25 +37,29 @@ export class CalcVR {
     );
     this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
 
-    this.distanceLat = Math.abs(currentPosition[0]-this.newPosition[0])/20;
-    this.distanceLon = Math.abs(currentPosition[1]-this.newPosition[1])/20;
+    this.splitsLat = [];
+    this.splitsLon = [];
+    this.distanceLat = (currentPosition[0]-this.newPosition[0])/20;
+    this.distanceLon = (currentPosition[1]-this.newPosition[1])/20;
     for (let t = 0; t < 20; t++) {
-      this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
-      this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
+      this.splitsLat.push(currentPosition[0] - this.distanceLat*t);
+      this.splitsLon.push(currentPosition[1] - this.distanceLon*t);
     }
   }
   calcSizeDist(distance) {
-    if (distance <= 100 && distance >= 50) {
+    if (distance <= 100 && distance >= 0) {
       this.objectSize = "50 50 50";
-      this.newDistance = 800;
+      //this.newDistance = 800;
+      this.newDistance = distance;
     } else if (distance > 100 && distance <= 800) {
-      this.objectSize = "35 35 35";
-      this.newDistance = 800 + distance / 1000;
+      this.objectSize = "45 45 45";
+      //this.newDistance = 800 + distance / 1000;
+      this.newDistance = distance;
     } else if (distance > 800 && distance <= 1600) {
-      this.objectSize = "20 20 20";
+      this.objectSize = "30 30 30";
       this.newDistance = 800 + distance / 1000;
     } else if (distance > 1600 && distance <= 2000) {
-      this.objectSize = "10 10 10";
+      this.objectSize = "15 15 15";
       this.newDistance = 800 + distance / 1000;
     } else if (distance > 2000) {
       this.objectSize = "5 5 5";
@@ -70,7 +72,7 @@ let coordinates = [];
 
 window.onload = async () => {
   console.log("on loaded");
-  const res = await fetch("04.json"); //awaitして、ors-routeを撮ってきてresに
+  const res = await fetch("01.json"); //awaitして、ors-routeを撮ってきてresに
   const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
   const coords = json.routes[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
@@ -94,11 +96,13 @@ function renderPlaces(places, pos) {
   let scene = document.querySelector("a-scene");
   var crd = pos.coords;
   let cal = new CalcVR();
+  let id = 0;
 
   places.forEach((place) => {
     let latitude = place.location.lat;
     let longitude = place.location.lng;
-    let name = place.name;
+    let name = id++;
+    
     let modelName = place.modelName;
     //cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
@@ -119,7 +123,6 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    console.log(cal.newDistance);
     for (let i = 0; i < 20; i++) {
       let model2 = document.createElement("a-box");
       model2.setAttribute("material", `color:red`);
@@ -128,12 +131,14 @@ function renderPlaces(places, pos) {
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
       );
       model2.setAttribute("wireframe", "true");
-      model2.setAttribute("scale", `${i*5} ${i*5} ${i*5}`);
+      model2.setAttribute("scale", `${10} ${10} ${10}`);
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
       scene.appendChild(model2);
+      
     }
+    console.log(cal.splitsLat);
   });
 }
 
