@@ -39,8 +39,8 @@ export class CalcVR {
 
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = currentPosition[0]-this.newPosition[0]/5;
-    this.distanceLon = currentPosition[1]-this.newPosition[1]/5;
+    this.distanceLat = (currentPosition[0]-this.newPosition[0])/5;
+    this.distanceLon = (currentPosition[1]-this.newPosition[1])/5;
     for (let t = 0; t < 5; t++) {
       this.splitsLat.push(currentPosition[0] - this.distanceLat*t);
       this.splitsLon.push(currentPosition[1] - this.distanceLon*t);
