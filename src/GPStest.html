@@ -59,6 +59,17 @@
                 }
             };
             idAPI(id_api)
+                .then(function(data){
+                    return new Promise(function (resolve,reject){
+                    const parse = data.items;
+                    const id_prev_str = parse[0]['count(*)'];
+                    const id_prev = Number(id_prev_str);
+                    const id = id_prev +1;
+                    console.log(id);
+                    resolve (id);
+                    });
+                });
+
 
             fetch('https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3', {
                 method: 'POST',
