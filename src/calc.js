@@ -57,14 +57,14 @@ export class CalcVR {
       //this.newDistance = 800;
       this.newDistance = distance;
     } else if (distance > 10 && distance <= 30) {
-      this.objectSize = "10 10 10";
+      this.objectSize = "14 14 14";
       //this.newDistance = 800 + distance / 1000;
       this.newDistance = distance;
     } else if (distance > 30 && distance <= 50) {
-      this.objectSize = "5 5 5";
+      this.objectSize = "13 13 13";
       //this.newDistance = 800 + distance / 1000;
     } else if (distance > 50 && distance <= 75) {
-      this.objectSize = "3 3 3";
+      this.objectSize = "2 2 2";
       //this.newDistance = 800 + distance / 1000;
     } else if (distance > 75) {
       this.objectSize = "1 1 1";
@@ -133,7 +133,7 @@ function renderPlaces(places, pos) {
 
     for (let i = 0; i < 10; i++) {
       let model2 = document.createElement("a-box");
-      model2.setAttribute("material", `color:#FF000${name}`);
+      model2.setAttribute("material", `color:#FF0000`);
       model2.setAttribute(
         "gps-entity-place",
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
