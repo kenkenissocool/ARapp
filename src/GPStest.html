@@ -50,6 +50,11 @@
         
 
         function callAPIOCI(placename){
+            let position = await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
+            const gpslat = position.coords.latitude;
+            const gpslng = position.coords.longitude;
             const data = {
                     'id': '14',
                     'name': 'Tsukuba University Health Center',
@@ -95,23 +100,15 @@
                     resolve (id);
                     });
                 })
-                .then(function(id){
-                    return new Promise(function (resolve, reject) {
-                    navigator.geolocation.getCurrentPosition(resolve, reject);
-                    resolve([id,coords.latitude,coords.longitude]);
-                })
-                })
                 .then(
                     function(id){
                         return new Promise(function(resolve,reject){
-                        const id_str = String(id[0]);
-                        const lat = String(id[1]);
-                        const lon = String(id[2]);
+                        const id_str = String(id);
                         const data = {
                             'id': id_str,
                             'name': placename,
-                            'lat': lat,
-                            'lon': lon
+                            'lat': gpslat,
+                            'lon': gpslon
                         };
                         console.log(data);
                         resolve (data);
