@@ -61,16 +61,7 @@ export class CalcVR {
       //this.newDistance = 800 + distance / 1000;
       this.newDistance = distance;
     }
-    //  else if (distance > 800 && distance <= 1600) {
-    //   this.objectSize = "30 30 30";
-    //   this.newDistance = 800 + distance / 1000;
-    // } else if (distance > 1600 && distance <= 2000) {
-    //   this.objectSize = "15 15 15";
-    //   this.newDistance = 800 + distance / 1000;
-    // } else if (distance > 2000) {
-    //   this.objectSize = "5 5 5";
-    //   this.newDistance = 800 + distance / 1000;
-    // }
+    
   }
 }
 
@@ -144,8 +135,8 @@ function renderPlaces(places, pos) {
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
-      
       scene.appendChild(model2);
+      console.log(cal.splitsLat[i]);
       
     }
 
