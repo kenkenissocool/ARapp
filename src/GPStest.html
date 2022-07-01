@@ -7,9 +7,9 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>POSTAPIをテストするページver.15
+    <p>GPSをテストするページver.1.2
     </p>
-        <label for="plase">行きたい場所を選択</label>
+        <label for="plase">今いる場所の名前を入力(英語)</label>
         <select id="plase">
         <option value="1">粉とクリーム</option>
         <option value="2">つくば駅</option>
@@ -24,9 +24,36 @@
         </select>
     <br>
     <p>返答: <span id = "resp"></p>
-    <input type="button" value="選択" onclick="touchAPI1()"/>
+    <input type="button" value="入力" onclick="touchAPI1()"/>
+
+    <div id="app">
+        <dl>
+            <dt>緯度</dt>
+            <dd id="lat">-----</dd>
+        </dl>
+        <dl>
+            <dt>経度</dt>
+            <dd id="lng">-----</dd>
+        </dl>
+    
+        <a id="map" href="" target="_blank">Google Map</a>
+    </div>
 
     <script type="text/javascript">
+
+        let latitude = document.getElementById('lat');
+        let longitude = document.getElementById('lng');
+        let map = document.getElementById('map');
+        let lonnum;
+
+        navigator.geolocation.getCurrentPosition((position)=>{   
+            let coords = position.coords;
+            latitude.textContent = coords.latitude;
+            longitude.textContent = coords.longitude;
+            lonnum = coords.longitude;
+            map.setAttribute('href', `https://www.google.co.jp/maps/@${coords.latitude},${coords.longitude},15z`);
+        });
+        console.log(lonnum)
 
         function callAPIOCI(url){
             const data = {
@@ -106,7 +133,8 @@
             const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3";
             const JN = callAPIOCI(urlTemp);
         }
-        
+        getlocation()
+
         console.log("JavaScriptを実行しています");
     </script>
 </html>
