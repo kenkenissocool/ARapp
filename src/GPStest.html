@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.1.1
+    <p>GPSをテストするページver.1.2
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
         <select id="plase">
@@ -44,13 +44,16 @@
         let latitude = document.getElementById('lat');
         let longitude = document.getElementById('lng');
         let map = document.getElementById('map');
+        let lonnum;
 
         navigator.geolocation.getCurrentPosition((position)=>{   
             let coords = position.coords;
             latitude.textContent = coords.latitude;
             longitude.textContent = coords.longitude;
+            lonnum = coords.longitude;
             map.setAttribute('href', `https://www.google.co.jp/maps/@${coords.latitude},${coords.longitude},15z`);
         });
+        console.log(lonnum)
 
         function callAPIOCI(url){
             const data = {
