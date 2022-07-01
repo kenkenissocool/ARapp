@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.1.2
+    <p>GPSをテストするページver.1.6
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
         <select id="plase">
@@ -35,6 +35,9 @@
             <dt>経度</dt>
             <dd id="lng">-----</dd>
         </dl>
+            <dt>誤差</dt>
+            <dd id="gosa">------</dd>
+        </dl>
     
         <a id="map" href="" target="_blank">Google Map</a>
     </div>
@@ -45,11 +48,13 @@
         let longitude = document.getElementById('lng');
         let map = document.getElementById('map');
         let lonnum;
+        let gosa = document.getElementById("gosa");
 
         navigator.geolocation.getCurrentPosition((position)=>{   
             let coords = position.coords;
             latitude.textContent = coords.latitude;
             longitude.textContent = coords.longitude;
+            gosa.textContent = coord.accuracy;
             lonnum = coords.longitude;
             map.setAttribute('href', `https://www.google.co.jp/maps/@${coords.latitude},${coords.longitude},15z`);
         });
