@@ -133,7 +133,7 @@ function renderPlaces(places, pos) {
 
     for (let i = 0; i < 10; i++) {
       let model2 = document.createElement("a-box");
-      model2.setAttribute("material", `color:red`);
+      model2.setAttribute("material", `color:#FF000${name}`);
       model2.setAttribute(
         "gps-entity-place",
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
