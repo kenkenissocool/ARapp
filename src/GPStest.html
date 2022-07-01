@@ -46,6 +46,19 @@
                     body: JSON.stringify(data),
                     mode: 'no-cors'
             };
+            const id_api = 'https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/1';
+
+            const idAPI = async(apiurl) =>{
+                const response = await fetch(apiurl,{method : "get"});
+                const json = response.json();
+                if (response.status == 200){
+                    console.log(json)
+                    return Promise.resolve(json);
+                }else{
+                    return Promise.reject(json.error);
+                }
+            };
+            idAPI(id_api)
 
             fetch('https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3', {
                 method: 'POST',
