@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.1
+    <p>GPSをテストするページver.1.1
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
         <select id="plase">
@@ -47,8 +47,8 @@
 
         navigator.geolocation.getCurrentPosition((position)=>{   
             let coords = position.coords;
-            lat.textContent = coords.latitude;
-            lng.textContent = coords.longitude;
+            latitude.textContent = coords.latitude;
+            longitude.textContent = coords.longitude;
             map.setAttribute('href', `https://www.google.co.jp/maps/@${coords.latitude},${coords.longitude},15z`);
         });
 
