@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.2.0.0
+    <p>GPSをテストするページver.2.1.0
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
         <input type="text" id="plase">
@@ -96,17 +96,22 @@
                     });
                 })
                 .then(function(id){
-                    
+                    return new Promise(function (resolve, reject) {
+                    navigator.geolocation.getCurrentPosition(resolve, reject);
+                    resolve([id,coords.latitude,coords.longitude]);
+                })
                 })
                 .then(
                     function(id){
                         return new Promise(function(resolve,reject){
-                        const id_str = String(id);
+                        const id_str = String(id[0]);
+                        const lat = String(id[1]);
+                        const lon = String(id[2]);
                         const data = {
                             'id': id_str,
                             'name': placename,
-                            'lat': '140.10292410850528',
-                            'lon': '36.104851274729356'
+                            'lat': lat,
+                            'lon': lon
                         };
                         console.log(data);
                         resolve (data);
