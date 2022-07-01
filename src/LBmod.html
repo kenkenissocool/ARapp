@@ -15,19 +15,8 @@
             loading-screen="enabled: false;"
             arjs="sourceType: webcam; debugUIEnabled: true;"
         >
-            <a-camera gps-camera="gpsMinDistance:10; maxDistance:30" rotation-reader></a-camera>
+            <a-camera gps-camera="gpsMinDistance:5; maxDistance:30" rotation-reader></a-camera>
         </a-scene>
-	<script src="./calc.js" type="module">
-        window.addEventListener('load', () => {
-            const el = document.querySelector('[gps-entity-place]');
-            el.addEventListener('gps-entity-place-update-positon', (event) => {
-              if(event.detail.distance < 100) {
-                el.setAttribute('material','color: red');
-              } else {
-                el.setAttribute('material','color: yellow');
-              }
-            });
-        });
-    </script>
+	<script src="./calc.js" type="module"></script>
     </body>
 </html>
