@@ -148,9 +148,9 @@ function renderPlaces(places, pos) {
         const el = document.querySelector('[gps-entity-place]');
         el.addEventListener('gps-entity-place-update-positon', (event) => {
           if(event.detail.distance < 100) {
-            el.setAttribute('material','color: yellow');
-          } else {
             el.setAttribute('material','color: red');
+          } else {
+            el.setAttribute('material','color: yellow');
           }
         });
       });
