@@ -7,7 +7,7 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.2.0.0
+    <p>GPSをテストするページver.2.1.1
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
         <input type="text" id="plase">
@@ -50,6 +50,11 @@
         
 
         function callAPIOCI(placename){
+            let position = await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
+            const gpslat = position.coords.latitude;
+            const gpslng = position.coords.longitude;
             const data = {
                     'id': '14',
                     'name': 'Tsukuba University Health Center',
@@ -95,9 +100,6 @@
                     resolve (id);
                     });
                 })
-                .then(function(id){
-                    
-                })
                 .then(
                     function(id){
                         return new Promise(function(resolve,reject){
@@ -105,8 +107,8 @@
                         const data = {
                             'id': id_str,
                             'name': placename,
-                            'lat': '140.10292410850528',
-                            'lon': '36.104851274729356'
+                            'lat': gpslat,
+                            'lon': gpslon
                         };
                         console.log(data);
                         resolve (data);
