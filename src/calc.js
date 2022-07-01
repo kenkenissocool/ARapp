@@ -41,9 +41,9 @@ export class CalcVR {
   connectPoints(lastPosition,target) {
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = (lastPosition[0]-this.newPosition[0])/20;
-    this.distanceLon = (lastPosition[1]-this.newPosition[1])/20;
-    for (let t = 0; t < 20; t++) {
+    this.distanceLat = (lastPosition[0]-this.newPosition[0])/10;
+    this.distanceLon = (lastPosition[1]-this.newPosition[1])/10;
+    for (let t = 0; t < 10; t++) {
       this.splitsLat.push(lastPosition[0] - this.distanceLat*t);
       this.splitsLon.push(lastPosition[1] - this.distanceLon*t);
     }
@@ -52,23 +52,23 @@ export class CalcVR {
 
 
   calcSizeDist(distance) {
-    if (distance <= 100 && distance >= 0) {
-      this.objectSize = "50 50 50";
+    if (distance <= 10 && distance >= 0) {
+      this.objectSize = "15 15 15";
       //this.newDistance = 800;
       this.newDistance = distance;
-    } else if (distance > 100 && distance <= 800) {
-      this.objectSize = "45 45 45";
+    } else if (distance > 10 && distance <= 30) {
+      this.objectSize = "10 10 10";
       //this.newDistance = 800 + distance / 1000;
       this.newDistance = distance;
-    } else if (distance > 800 && distance <= 1600) {
-      this.objectSize = "30 30 30";
-      this.newDistance = 800 + distance / 1000;
-    } else if (distance > 1600 && distance <= 2000) {
-      this.objectSize = "15 15 15";
-      this.newDistance = 800 + distance / 1000;
-    } else if (distance > 2000) {
+    } else if (distance > 30 && distance <= 50) {
       this.objectSize = "5 5 5";
-      this.newDistance = 800 + distance / 1000;
+      //this.newDistance = 800 + distance / 1000;
+    } else if (distance > 50 && distance <= 75) {
+      this.objectSize = "3 3 3";
+      //this.newDistance = 800 + distance / 1000;
+    } else if (distance > 75) {
+      this.objectSize = "1 1 1";
+      //this.newDistance = 800 + distance / 1000;
     }
   }
 }
@@ -131,9 +131,9 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       let model2 = document.createElement("a-box");
-      model2.setAttribute("material", `color:red`);
+      model2.setAttribute("material", `color:#FF000${name}`);
       model2.setAttribute(
         "gps-entity-place",
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
