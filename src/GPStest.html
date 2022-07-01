@@ -49,7 +49,7 @@
         })
         
 
-        function callAPIOCI(placename){
+        async function callAPIOCI(placename){
             let position = await new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(resolve, reject);
             });
