@@ -145,7 +145,7 @@ function renderPlaces(places, pos) {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
       scene.appendChild(model2);
-      console.log(splitsLat[i]);
+      console.log(cal.splitsLat[i]);
       
     }
 
