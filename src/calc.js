@@ -29,20 +29,20 @@ export class CalcVR {
   //   }
   // }
 
-  calcNewPosition(currentPosition, bearing, newTargetToDistance) {
-    const current = new LatLon(currentPosition[0], currentPosition[1]);
-    const calculatedlced = current.destinationPoint(
-      newTargetToDistance,
-      bearing
-    );
-    this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
-  }
+  // calcNewPosition(currentPosition, bearing, newTargetToDistance) {
+  //   const current = new LatLon(currentPosition[0], currentPosition[1]);
+  //   const calculatedlced = current.destinationPoint(
+  //     newTargetToDistance,
+  //     bearing
+  //   );
+  //   this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
+  // }
 
   connectPoints(lastPosition,target) {
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = (lastPosition[0]-this.newPosition[0])/15;
-    this.distanceLon = (lastPosition[1]-this.newPosition[1])/15;
+    this.distanceLat = (lastPosition[0]-target[0])/15;
+    this.distanceLon = (lastPosition[1]-target[1])/15;
     for (let t = 0; t < 15; t++) {
       this.splitsLat.push(lastPosition[0] - this.distanceLat*t);
       this.splitsLon.push(lastPosition[1] - this.distanceLon*t);
@@ -61,7 +61,16 @@ export class CalcVR {
       //this.newDistance = 800 + distance / 1000;
       this.newDistance = distance;
     }
-    
+    //  else if (distance > 800 && distance <= 1600) {
+    //   this.objectSize = "30 30 30";
+    //   this.newDistance = 800 + distance / 1000;
+    // } else if (distance > 1600 && distance <= 2000) {
+    //   this.objectSize = "15 15 15";
+    //   this.newDistance = 800 + distance / 1000;
+    // } else if (distance > 2000) {
+    //   this.objectSize = "5 5 5";
+    //   this.newDistance = 800 + distance / 1000;
+    // }
   }
 }
 
@@ -106,7 +115,7 @@ function renderPlaces(places, pos) {
     //cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
-    cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
+    //cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
     cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
     cal.calcSizeDist(cal.distance);
 
@@ -115,7 +124,7 @@ function renderPlaces(places, pos) {
     model.setAttribute("look-at", "[gps-camera]");
     model.setAttribute(
       "gps-entity-place",
-      `latitude: ${cal.newPosition[0]}; longitude: ${cal.newPosition[1]};`
+      `latitude: ${latitude}; longitude: ${longitude};`
     );
     model.setAttribute("scale", `${cal.objectSize}`);
     model.addEventListener("loaded", () => {
