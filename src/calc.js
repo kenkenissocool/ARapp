@@ -53,7 +53,7 @@ export class CalcVR {
 
   calcSizeDist(distance) {
     if (distance <= 10 && distance >= 0) {
-      this.objectSize = "5 5 5";
+      this.objectSize = "15 15 15";
       //this.newDistance = 800;
       this.newDistance = distance;
     } else if (distance > 10 && distance <= 30) {
