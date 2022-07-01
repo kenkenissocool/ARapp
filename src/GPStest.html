@@ -7,21 +7,10 @@
   <title>POSTAPItest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.1.7.1
+    <p>GPSをテストするページver.2.0.0
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
-        <select id="plase">
-        <option value="1">粉とクリーム</option>
-        <option value="2">つくば駅</option>
-        <option value="3">春日宿舎</option>
-        <option value="4">一の矢宿舎</option>
-        <option value="5">大学会館</option>
-        <option value="6">中央図書館</option>
-        <option value="7">大学本部</option>
-        <option value="8">カスミ筑波大学店</option>
-        <option value="9">筑波大学附属病院</option>
-        <option value="10">ヒューマン･ハイ･パフォーマンス先端研究センター</option>
-        </select>
+        <input type="text" id="plase">
     <br>
     <p>返答: <span id = "resp"></p>
     <input type="button" value="入力" onclick="touchAPI1()"/>
@@ -60,7 +49,7 @@
         })
         
 
-        function callAPIOCI(url){
+        function callAPIOCI(placename){
             const data = {
                     'id': '14',
                     'name': 'Tsukuba University Health Center',
@@ -79,6 +68,11 @@
                     mode: 'no-cors'
             };
             const id_api = 'https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/1';
+            var getPosition = function (options) {
+                return new Promise(function (resolve, reject) {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+                });
+            }
 
             const idAPI = async(apiurl) =>{
                 const response = await fetch(apiurl,{method : "get"});
@@ -101,13 +95,16 @@
                     resolve (id);
                     });
                 })
+                .then(function(id){
+                    
+                })
                 .then(
                     function(id){
                         return new Promise(function(resolve,reject){
                         const id_str = String(id);
                         const data = {
                             'id': id_str,
-                            'name': 'Tsukuba University Health Center',
+                            'name': placename,
                             'lat': '140.10292410850528',
                             'lon': '36.104851274729356'
                         };
@@ -135,8 +132,9 @@
         }
 
         function touchAPI1(){
+            const placename = document.getElementById("plase").value;
             const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/3";
-            const JN = callAPIOCI(urlTemp);
+            const JN = callAPIOCI(placename);
         }
 
         console.log("JavaScriptを実行しています");
