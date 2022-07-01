@@ -41,9 +41,9 @@ export class CalcVR {
   connectPoints(lastPosition,target) {
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = (lastPosition[0]-this.newPosition[0])/10;
-    this.distanceLon = (lastPosition[1]-this.newPosition[1])/10;
-    for (let t = 0; t < 10; t++) {
+    this.distanceLat = (lastPosition[0]-this.newPosition[0])/15;
+    this.distanceLon = (lastPosition[1]-this.newPosition[1])/15;
+    for (let t = 0; t < 15; t++) {
       this.splitsLat.push(lastPosition[0] - this.distanceLat*t);
       this.splitsLon.push(lastPosition[1] - this.distanceLon*t);
     }
@@ -56,7 +56,7 @@ export class CalcVR {
       this.objectSize = "10 10 10";
       //this.newDistance = 800;
       this.newDistance = distance;
-    } else if (distance > 100 && distance <= 800) {
+    } else if (distance > 100) {
       this.objectSize = "5 5 5";
       //this.newDistance = 800 + distance / 1000;
       this.newDistance = distance;
@@ -132,7 +132,7 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       let model2 = document.createElement("a-box");
       model2.setAttribute("material", `color:red`);
       model2.setAttribute(
@@ -143,6 +143,16 @@ function renderPlaces(places, pos) {
       model2.setAttribute("scale", `${1} ${1} ${1}`);
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+      });
+      window.addEventListener('load', () => {
+        const el = document.querySelector('[gps-entity-place]');
+        el.addEventListener('gps-entity-place-update-positon', (event) => {
+          if(event.detail.distance < 100) {
+            el.setAttribute('material','color: yellow');
+          } else {
+            el.setAttribute('material','color: red');
+          }
+        });
       });
       scene.appendChild(model2);
       
