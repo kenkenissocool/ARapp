@@ -41,9 +41,9 @@ export class CalcVR {
   connectPoints(lastPosition,target) {
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = (lastPosition[0]-this.newPosition[0])/20;
-    this.distanceLon = (lastPosition[1]-this.newPosition[1])/20;
-    for (let t = 0; t < 20; t++) {
+    this.distanceLat = (lastPosition[0]-this.newPosition[0])/10;
+    this.distanceLon = (lastPosition[1]-this.newPosition[1])/10;
+    for (let t = 0; t < 10; t++) {
       this.splitsLat.push(lastPosition[0] - this.distanceLat*t);
       this.splitsLon.push(lastPosition[1] - this.distanceLon*t);
     }
@@ -60,16 +60,17 @@ export class CalcVR {
       this.objectSize = "5 5 5";
       //this.newDistance = 800 + distance / 1000;
       this.newDistance = distance;
-    } else if (distance > 800 && distance <= 1600) {
-      this.objectSize = "30 30 30";
-      this.newDistance = 800 + distance / 1000;
-    } else if (distance > 1600 && distance <= 2000) {
-      this.objectSize = "15 15 15";
-      this.newDistance = 800 + distance / 1000;
-    } else if (distance > 2000) {
-      this.objectSize = "5 5 5";
-      this.newDistance = 800 + distance / 1000;
     }
+    //  else if (distance > 800 && distance <= 1600) {
+    //   this.objectSize = "30 30 30";
+    //   this.newDistance = 800 + distance / 1000;
+    // } else if (distance > 1600 && distance <= 2000) {
+    //   this.objectSize = "15 15 15";
+    //   this.newDistance = 800 + distance / 1000;
+    // } else if (distance > 2000) {
+    //   this.objectSize = "5 5 5";
+    //   this.newDistance = 800 + distance / 1000;
+    // }
   }
 }
 
@@ -131,7 +132,7 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       let model2 = document.createElement("a-box");
       model2.setAttribute("material", `color:red`);
       model2.setAttribute(
