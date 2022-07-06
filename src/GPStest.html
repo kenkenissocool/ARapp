@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>POSTAPItest</title>
+  <title>POSTAPIGPStest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.2.1.1
+    <p>GPSをテストするページver.3.0.3
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
         <input type="text" id="plase">
@@ -49,7 +49,7 @@
         })
         
 
-        function callAPIOCI(placename){
+        async function callAPIOCI(placename){
             let position = await new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(resolve, reject);
             });
@@ -107,8 +107,8 @@
                         const data = {
                             'id': id_str,
                             'name': placename,
-                            'lat': gpslat,
-                            'lon': gpslon
+                            'lat': gpslng,
+                            'lon': gpslat
                         };
                         console.log(data);
                         resolve (data);
@@ -125,8 +125,13 @@
                             // body: '{\n  "id": "12",\n  "name": "Tsukuba University Health Center",\n  "lat": "140.10292410850528",\n  "lon": "36.104851274729356" \n}',
                             body: JSON.stringify(data)
                         });
+                        document.getElementById("resp").textContent = "Success" ;
                     }
                 )
+                .catch((err) =>{
+                    console.log(err);
+                    document.getElementById("resp").textContent = "Error" ;
+                });
 
 
             
