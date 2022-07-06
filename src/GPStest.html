@@ -7,7 +7,7 @@
   <title>POSTAPIGPStest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.3.0.0
+    <p>GPSをテストするページver.3.0.1
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
         <input type="text" id="plase">
@@ -127,6 +127,14 @@
                         });
                     }
                 )
+                .then(
+                    function(){
+                        document.getElementById("resp").textContent = "Success" ;
+                    }
+                )
+                .catch((err) =>{
+                    console.log(err);
+                });
 
 
             

@@ -7,7 +7,7 @@
   <title>APItest</title>
 </head>
 <body>
-    <p>fetchAPIをテストするページver.5
+    <p>fetchAPIをテストするページver.6
     </p>
         <label for="plase">行きたい場所を選択</label>
         <select id="plase">
@@ -28,7 +28,7 @@
 
     <script type="text/javascript">
 
-        function callAPIOCI(url){
+        async function callAPIOCI(url){
             let lat;
             let lon;
 
@@ -86,11 +86,11 @@
             
         }
 
-        function touchAPI1(){
+        async function touchAPI1(){
             const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
             const place = document.getElementById("plase").value;
             const URL = urlTemp + place;
-            const JN = callAPIOCI(URL);
+            const JN = await callAPIOCI(URL);
             
             console.log(JN);
         }
