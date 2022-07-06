@@ -20,24 +20,6 @@ export class CalcVR {
     this.currentPosition = currentPosiArg;
   }
 
-  // calcBetween(currentPosition, targetPosition){
-  //   this.distanceLat = Math.abs(currentPosition[0]-targetPosition[0])/20;
-  //   this.distanceLon = Math.abs(currentPosition[1]-targetPosition[1])/20;
-  //   for (let t = 0; t < 10; t++) {
-  //     this.splitsLat.push(currentPosition[0] + this.distanceLat*t);
-  //     this.splitsLon.push(currentPosition[1] + this.distanceLon*t);
-  //   }
-  // }
-
-  // calcNewPosition(currentPosition, bearing, newTargetToDistance) {
-  //   const current = new LatLon(currentPosition[0], currentPosition[1]);
-  //   const calculatedlced = current.destinationPoint(
-  //     newTargetToDistance,
-  //     bearing
-  //   );
-  //   this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
-  // }
-
   connectPoints(lastPosition,target) {
     this.splitsLat = [];
     this.splitsLon = [];
@@ -49,28 +31,14 @@ export class CalcVR {
     }
   }
 
-
-
   calcSizeDist(distance) {
     if (distance <= 100 && distance >= 0) {
       this.objectSize = "10 10 10";
-      //this.newDistance = 800;
       this.newDistance = distance;
     } else if (distance > 100) {
       this.objectSize = "5 5 5";
-      //this.newDistance = 800 + distance / 1000;
       this.newDistance = distance;
     }
-    //  else if (distance > 800 && distance <= 1600) {
-    //   this.objectSize = "30 30 30";
-    //   this.newDistance = 800 + distance / 1000;
-    // } else if (distance > 1600 && distance <= 2000) {
-    //   this.objectSize = "15 15 15";
-    //   this.newDistance = 800 + distance / 1000;
-    // } else if (distance > 2000) {
-    //   this.objectSize = "5 5 5";
-    //   this.newDistance = 800 + distance / 1000;
-    // }
   }
 }
 
@@ -112,10 +80,8 @@ function renderPlaces(places, pos) {
     let name = id++;
     
     let modelName = place.modelName;
-    //cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
-    //cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
     cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
     cal.calcSizeDist(cal.distance);
 
@@ -139,7 +105,6 @@ function renderPlaces(places, pos) {
         "gps-entity-place",
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
       );
-      // model2.setAttribute("wireframe", "true");
       model2.setAttribute("scale", `${1} ${1} ${1}`);
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
