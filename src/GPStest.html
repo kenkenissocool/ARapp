@@ -7,7 +7,7 @@
   <title>POSTAPIGPStest</title>
 </head>
 <body>
-    <p>GPSをテストするページver.3.0.1
+    <p>GPSをテストするページver.3.0.2
     </p>
         <label for="plase">今いる場所の名前を入力(英語)</label>
         <input type="text" id="plase">
@@ -125,10 +125,6 @@
                             // body: '{\n  "id": "12",\n  "name": "Tsukuba University Health Center",\n  "lat": "140.10292410850528",\n  "lon": "36.104851274729356" \n}',
                             body: JSON.stringify(data)
                         });
-                    }
-                )
-                .then(
-                    function(){
                         document.getElementById("resp").textContent = "Success" ;
                     }
                 )
