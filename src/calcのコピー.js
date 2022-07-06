@@ -2,42 +2,18 @@ import LatLon from "https://cdn.jsdelivr.net/npm/geodesy@2.2.1/latlon-spherical.
 
 export class CalcVR {
   constructor() {
-    this.distance = 0;
-    this.bearing = 0;
-    this.newPosition = [0, 0];
-    this.currentPosition = [0, 0];
-    this.objectSize = "0, 0, 0";
-    this.newDistance = 800;
-    this.distanceLat = 0;
-    this.distanceLon = 0;
-  }
-
-  calcDist(currentPosiArg, targetPosition) {
-    const current = new LatLon(currentPosiArg[0], currentPosiArg[1]);
-    const target = new LatLon(targetPosition[0], targetPosition[1]);
-    this.distance = current.distanceTo(target);
-    this.bearing = current.finalBearingTo(target);
-    this.currentPosition = currentPosiArg;
+    this.latBetween = 0;
+    this.lonBetween = 0;
   }
 
   connectPoints(lastPosition,target) {
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = (lastPosition[0]-target[0])/15;
-    this.distanceLon = (lastPosition[1]-target[1])/15;
+    this.latBetween = (lastPosition[0]-target[0])/15;
+    this.lonBetween = (lastPosition[1]-target[1])/15;
     for (let t = 0; t < 15; t++) {
-      this.splitsLat.push(lastPosition[0] - this.distanceLat*t);
-      this.splitsLon.push(lastPosition[1] - this.distanceLon*t);
-    }
-  }
-
-  calcSizeDist(distance) {
-    if (distance <= 100 && distance >= 0) {
-      this.objectSize = "10 10 10";
-      this.newDistance = distance;
-    } else if (distance > 100) {
-      this.objectSize = "5 5 5";
-      this.newDistance = distance;
+      this.splitsLat.push(lastPosition[0] - this.latBetween*t);
+      this.splitsLon.push(lastPosition[1] - this.lonBetween*t);
     }
   }
 }
@@ -77,22 +53,19 @@ function renderPlaces(places, pos) {
   places.forEach((place) => {
     let latitude = place.location.lat;
     let longitude = place.location.lng;
-    let name = id++;
+    id = id++;
     
-    let modelName = place.modelName;
-    cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
     cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
-    cal.calcSizeDist(cal.distance);
 
     let model = document.createElement("a-text");
-    model.setAttribute("value", `${name}`);
+    model.setAttribute("value", `${id}`);
     model.setAttribute("look-at", "[gps-camera]");
     model.setAttribute(
       "gps-entity-place",
       `latitude: ${latitude}; longitude: ${longitude};`
     );
-    model.setAttribute("scale", `${cal.objectSize}`);
+    model.setAttribute("scale", `${1} ${1} ${1}`);
     model.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
@@ -110,8 +83,6 @@ function renderPlaces(places, pos) {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
       scene.appendChild(model2);
-      console.log(cal.splitsLat[i]);
-      
     }
 
     lastlat = latitude;
