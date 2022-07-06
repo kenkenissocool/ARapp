@@ -31,6 +31,7 @@
         window.onload = () => {
             navigator.geolocation.getCurrentPosition(success, error, options);
         };
+        var crd = 0;
 
         function callAPIOCI(url){
             let lat;
@@ -98,7 +99,7 @@
         };
 
         function success(pos) {
-          var crd = pos.coords;
+          crd = pos.coords;
         }
 
         function error(err) {
