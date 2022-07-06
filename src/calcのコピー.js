@@ -29,21 +29,21 @@ export class CalcVR {
   //   }
   // }
 
-  calcNewPosition(currentPosition, bearing, newTargetToDistance) {
-    const current = new LatLon(currentPosition[0], currentPosition[1]);
-    const calculatedlced = current.destinationPoint(
-      newTargetToDistance,
-      bearing
-    );
-    this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
-  }
+  // calcNewPosition(currentPosition, bearing, newTargetToDistance) {
+  //   const current = new LatLon(currentPosition[0], currentPosition[1]);
+  //   const calculatedlced = current.destinationPoint(
+  //     newTargetToDistance,
+  //     bearing
+  //   );
+  //   this.newPosition = [calculatedlced.latitude, calculatedlced.longitude];
+  // }
 
   connectPoints(lastPosition,target) {
     this.splitsLat = [];
     this.splitsLon = [];
-    this.distanceLat = (lastPosition[0]-this.newPosition[0])/10;
-    this.distanceLon = (lastPosition[1]-this.newPosition[1])/10;
-    for (let t = 0; t < 10; t++) {
+    this.distanceLat = (lastPosition[0]-target[0])/15;
+    this.distanceLon = (lastPosition[1]-target[1])/15;
+    for (let t = 0; t < 15; t++) {
       this.splitsLat.push(lastPosition[0] - this.distanceLat*t);
       this.splitsLon.push(lastPosition[1] - this.distanceLon*t);
     }
@@ -52,23 +52,25 @@ export class CalcVR {
 
 
   calcSizeDist(distance) {
-    if (distance <= 10 && distance >= 0) {
-      this.objectSize = "15 15 15";
+    if (distance <= 100 && distance >= 0) {
+      this.objectSize = "10 10 10";
       //this.newDistance = 800;
-    } else if (distance > 10 && distance <= 30) {
-      this.objectSize = "14 14 14";
+      this.newDistance = distance;
+    } else if (distance > 100) {
+      this.objectSize = "5 5 5";
       //this.newDistance = 800 + distance / 1000;
-    } else if (distance > 30 && distance <= 50) {
-      this.objectSize = "13 13 13";
-      //this.newDistance = 800 + distance / 1000;
-    } else if (distance > 50 && distance <= 75) {
-      this.objectSize = "12 12 12";
-      //this.newDistance = 800 + distance / 1000;
-    } else if (distance > 75) {
-      this.objectSize = "11 11 11";
-      //this.newDistance = 800 + distance / 1000;
+      this.newDistance = distance;
     }
-    this.newDistance = distance;
+    //  else if (distance > 800 && distance <= 1600) {
+    //   this.objectSize = "30 30 30";
+    //   this.newDistance = 800 + distance / 1000;
+    // } else if (distance > 1600 && distance <= 2000) {
+    //   this.objectSize = "15 15 15";
+    //   this.newDistance = 800 + distance / 1000;
+    // } else if (distance > 2000) {
+    //   this.objectSize = "5 5 5";
+    //   this.newDistance = 800 + distance / 1000;
+    // }
   }
 }
 
@@ -76,9 +78,9 @@ let coordinates = [];
 
 window.onload = async () => {
   console.log("on loaded");
-  const res = await fetch("hongaku.json"); //awaitして、ors-routeを撮ってきてresに
+  const res = await fetch("hongaku.geojson"); //awaitして、ors-routeを撮ってきてresに
   const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
-  const coords = json.routes[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
+  const coords = json.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
     return {
       name: "test",
@@ -113,7 +115,7 @@ function renderPlaces(places, pos) {
     //cal.calcBetween([crd.latitude, crd.longitude], [latitude, longitude]);
     cal.calcDist([crd.latitude, crd.longitude], [latitude, longitude]);
     console.log(`heading: ${crd.heading}`);
-    cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
+    //cal.calcNewPosition(cal.currentPosition, cal.bearing, cal.newDistance);
     cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
     cal.calcSizeDist(cal.distance);
 
@@ -122,7 +124,7 @@ function renderPlaces(places, pos) {
     model.setAttribute("look-at", "[gps-camera]");
     model.setAttribute(
       "gps-entity-place",
-      `latitude: ${cal.newPosition[0]}; longitude: ${cal.newPosition[1]};`
+      `latitude: ${latitude}; longitude: ${longitude};`
     );
     model.setAttribute("scale", `${cal.objectSize}`);
     model.addEventListener("loaded", () => {
@@ -130,9 +132,9 @@ function renderPlaces(places, pos) {
     });
     scene.appendChild(model);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
       let model2 = document.createElement("a-box");
-      model2.setAttribute("material", `color:#FF0000`);
+      model2.setAttribute("material", `color:red`);
       model2.setAttribute(
         "gps-entity-place",
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
@@ -143,6 +145,7 @@ function renderPlaces(places, pos) {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
       scene.appendChild(model2);
+      console.log(cal.splitsLat[i]);
       
     }
 
