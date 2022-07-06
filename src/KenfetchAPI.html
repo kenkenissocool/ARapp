@@ -35,6 +35,8 @@
         function callAPIOCI(url){
             let lat;
             let lon;
+            let currentlat = crd.latitude;
+            let currentlon = crd.longitude;
 
             const locationAPI = async(urlz) =>{
                 const response = await fetch(urlz,{method : "get"});
@@ -77,7 +79,7 @@
                         };
                         console.log(value);
 
-                        const body = '{"coordinates":[[140.10709494352344, 36.08612344366146],['+ value + ']]}';
+                        const body = '{"coordinates":[['+ crd.longitude +', '+ crd.latitude +'],['+ value + ']]}';
 
                         request.send(body);
                         const geoJSON = request.responseText;
