@@ -54,6 +54,8 @@ function renderPlaces(places, pos) {
     let latitude = place.location.lat;
     let longitude = place.location.lng;
     id = id++;
+    console.log(latitude);
+
     
     console.log(`heading: ${crd.heading}`);
     cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
