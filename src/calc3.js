@@ -16,41 +16,87 @@ export class CalcVR {
   }
 }
 
-let coordinates = [];
+function staticLoadPlaces() {
+  return coordinates;
+}
 
-window.onload = async () => {
-  console.log("on loaded");
-  const res = await fetch("hongaku.geojson"); //awaitして、ors-routeを撮ってきてresに
-  const json = await res.json(); //awaitして、resにjson()を適用させたものをjsonの中に
+function callAPIOCI(places, url, pos){
+  let coordinates = [];
+  let lat;
+  let lon;
+  var crd = pos.coords;
+  let currentlat = crd.latitude;
+  let currentlon = crd.longitude;
+  let scene = document.querySelector("a-scene");
+  let cal = new CalcVR();
+  let id = 0;
+  let lastlat = crd.latitude;
+  let lastlon = crd.longitude;
+
+  const locationAPI = async(urlz) =>{
+    const response = await fetch(urlz,{method : "get"});
+    const json = response.json();
+    if (response.status == 200){
+      return Promise.resolve(json);
+    }else{
+      return Promise.reject(json.error);
+    }
+  }
+
+  locationAPI(url)
+    .then(function(data){
+      return new Promise(function (resolve,reject){
+      const jsonObj = JSON.stringify(data);
+      const items = data.items;
+      lat = items[0]["lat"];
+      lon = items[0]["lon"];
+      const location = lon +", " + lat;
+      console.log(lat);
+      console.log(jsonObj);
+      document.getElementById("resp").textContent = location ;
+      resolve(location);});
+    })
+    .then(function(value){
+      let request = new XMLHttpRequest();
+      request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
+      request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.setRequestHeader('Authorization', '5b3ce3597851110001cf6248a9c8937ac7a74664b0dc317c69d6c058');
+      request.onreadystatechange = function () {
+        if (this.readyState === 4) {
+          console.log('Status:', this.status);
+          console.log('Headers:', this.getAllResponseHeaders());
+          console.log('Body:', this.responseText);
+        }
+      };
+      console.log(value);
+      const body = '{"coordinates":[['+ currentlon +', '+ currentlat +'],['+ value + ']]}';
+      request.send(body);
+      const geoJSON = request.responseText;
+      console.log(geoJSON);
+    })
+    .catch((err) =>{
+      console.log(err);
+    });
+
+
+  const json = geoJSON.json(); //awaitして、resにjson()を適用させたものをjsonの中に
   const coords = json.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
     return {
       name: "test",
       location: {
         lat: coord[1],
-        lng: coord[0],
+        lon: coord[0],
       },
     };
   });
   console.log(coordinates);
-  navigator.geolocation.getCurrentPosition(success, error, options);
-};
 
-function staticLoadPlaces() {
-  return coordinates;
-}
-
-function renderPlaces(places, pos) {
-  let scene = document.querySelector("a-scene");
-  var crd = pos.coords;
-  let cal = new CalcVR();
-  let id = 0;
-  let lastlat = crd.latitude;
-  let lastlon = crd.longitude;
 
   places.forEach((place) => {
     let latitude = place.location.lat;
-    let longitude = place.location.lng;
+    let longitude = place.location.lon;
     id = id++;
     
     console.log(`heading: ${crd.heading}`);
@@ -82,10 +128,13 @@ function renderPlaces(places, pos) {
       });
       scene.appendChild(model2);
     }
-
-    lastlat = latitude;
-    lastlon = longitude;
+      lastlat = latitude;
+      lastlon = longitude;
   });
+}
+
+function touchAPI1(){
+  navigator.geolocation.getCurrentPosition(success, error, options);
 }
 
 var options = {
@@ -95,11 +144,19 @@ var options = {
 };
 
 function success(pos) {
+  const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
+  const place = document.getElementById("plase").value;
+  const URL = urlTemp + place;
+
   let places = staticLoadPlaces();
-  renderPlaces(places, pos);
+  const JN = callAPIOCI(places, URL, pos);
+  
+  console.log(JN);
 }
 
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
   alert("Unable to capture current location.");
 }
+
+console.log("JavaScriptを実行しています");
