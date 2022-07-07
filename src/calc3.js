@@ -98,6 +98,7 @@ function callAPIOCI(places, url, pos){
     let latitude = place.location.lat;
     let longitude = place.location.lon;
     id = id++;
+    console.log(latitude);
     
     console.log(`heading: ${crd.heading}`);
     cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
