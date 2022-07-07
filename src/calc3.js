@@ -97,14 +97,14 @@ function callAPIOCI(places, url, pos){
   places.forEach((place) => {
     let latitude = place.location.lat;
     let longitude = place.location.lon;
-    id = id++;
+    let name = id++;
     console.log(latitude);
     
     console.log(`heading: ${crd.heading}`);
     cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
 
     let model = document.createElement("a-text");
-    model.setAttribute("value", `${id}`);
+    model.setAttribute("value", `${name}`);
     model.setAttribute("look-at", "[gps-camera]");
     model.setAttribute(
       "gps-entity-place",

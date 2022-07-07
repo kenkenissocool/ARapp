@@ -53,7 +53,7 @@ function renderPlaces(places, pos) {
   places.forEach((place) => {
     let latitude = place.location.lat;
     let longitude = place.location.lng;
-    id = id++;
+    let name = id++;
     console.log(latitude);
 
     
@@ -61,7 +61,7 @@ function renderPlaces(places, pos) {
     cal.connectPoints([lastlat,lastlon], [latitude, longitude]);
 
     let model = document.createElement("a-text");
-    model.setAttribute("value", `${id}`);
+    model.setAttribute("value", `${name}`);
     model.setAttribute("look-at", "[gps-camera]");
     model.setAttribute(
       "gps-entity-place",
