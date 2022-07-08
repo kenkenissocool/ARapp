@@ -28,7 +28,7 @@ function staticLoadPlaces() {
 }
 
 function callAPIOCI(url, pos){
-  console.log(APIOCI2);
+  console.log('APIOCI');
 
   let coordinates = [];
   let lat;
