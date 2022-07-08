@@ -1,4 +1,5 @@
 var myElement = document.getElementById('fire');
+let coordinates = [];
 
 export class CalcVR {
   constructor() {
@@ -30,7 +31,6 @@ function staticLoadPlaces() {
 function callAPIOCI(url, pos){
   console.log('APIOCI');
 
-  let coordinates = [];
   let lat;
   let lon;
   var crd = pos.coords;
