@@ -1,6 +1,8 @@
 var myElement = document.getElementById('fire');
 let coordinates = [];
-window.onload = async 
+window.onload = async () => {
+  navigator.geolocation.getCurrentPosition(success, error, options);
+};
 
 export class CalcVR {
   constructor() {
