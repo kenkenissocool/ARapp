@@ -53,7 +53,6 @@ function callAPIOCI(places, url, pos){
   }
 
   locationAPI(url)
-    console.log(lAPI);
     .then(function(data){
       return new Promise(function (resolve,reject){
       const jsonObj = JSON.stringify(data);
