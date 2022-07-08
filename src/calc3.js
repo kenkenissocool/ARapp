@@ -27,8 +27,8 @@ function staticLoadPlaces() {
   return coordinates;
 }
 
-function callAPIOCI(places, url, pos){
-  console.log(APIOCI);
+function callAPIOCI(url, pos){
+  console.log(APIOCI2);
 
   let coordinates = [];
   let lat;
@@ -36,11 +36,6 @@ function callAPIOCI(places, url, pos){
   var crd = pos.coords;
   let currentlat = crd.latitude;
   let currentlon = crd.longitude;
-  let scene = document.querySelector("a-scene");
-  let cal = new CalcVR();
-  let id = 0;
-  let lastlat = crd.latitude;
-  let lastlon = crd.longitude;
 
   const locationAPI = async(urlz) =>{
     const response = await fetch(urlz,{method : "get"});
@@ -89,8 +84,8 @@ function callAPIOCI(places, url, pos){
     });
 
 
-  const json = geoJSON.json(); //awaitして、resにjson()を適用させたものをjsonの中に
-  const coords = json.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
+  const geojson = geoJSON.json(); //awaitして、resにjson()を適用させたものをjsonの中に
+  const coords = geojson.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
   coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
     return {
       name: "test",
@@ -101,7 +96,14 @@ function callAPIOCI(places, url, pos){
     };
   });
   console.log(coordinates);
+}
 
+function renderPlaces(places, pos) {
+  let scene = document.querySelector("a-scene");
+  let cal = new CalcVR();
+  let id = 0;
+  let lastlat = pos.coords.latitude;
+  let lastlon = pos.coords.longitude;
 
   places.forEach((place) => {
     let latitude = place.location.lat;
@@ -159,8 +161,9 @@ function success(pos) {
   const place = document.getElementById("plase").value;
   const URL = urlTemp + place;
 
+  const JN = callAPIOCI(URL, pos);
   let places = staticLoadPlaces();
-  const JN = callAPIOCI(places, URL, pos);
+  renderPlaces(places, pos);
   
   console.log(JN);
 }
