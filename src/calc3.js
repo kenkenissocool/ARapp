@@ -78,24 +78,22 @@ function callAPIOCI(url, pos){
       request.send(body);
       const geoJSON = request.responseText;
       console.log(geoJSON);
+      const geojson = geoJSON.json(); //awaitして、resにjson()を適用させたものをjsonの中に
+      const coords = geojson.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
+      coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
+        return {
+          name: "test",
+          location: {
+            lat: coord[1],
+            lon: coord[0],
+          },
+        };
+      });
+      console.log(coordinates);
     })
     .catch((err) =>{
       console.log(err);
     });
-
-
-  const geojson = geoJSON.json(); //awaitして、resにjson()を適用させたものをjsonの中に
-  const coords = geojson.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
-  coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
-    return {
-      name: "test",
-      location: {
-        lat: coord[1],
-        lon: coord[0],
-      },
-    };
-  });
-  console.log(coordinates);
 }
 
 function renderPlaces(places, pos) {
