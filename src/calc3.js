@@ -1,3 +1,5 @@
+var myElement = document.getElementById('fire');
+
 export class CalcVR {
   constructor() {
     this.latBetween = 0;
@@ -16,11 +18,18 @@ export class CalcVR {
   }
 }
 
+myElement.addEventListener('click', function(event) {
+  console.log('My HTML element was clicked, woot woot!');
+  navigator.geolocation.getCurrentPosition(success, error, options);
+});
+
 function staticLoadPlaces() {
   return coordinates;
 }
 
 function callAPIOCI(places, url, pos){
+  console.log(APIOCI);
+
   let coordinates = [];
   let lat;
   let lon;
@@ -44,6 +53,7 @@ function callAPIOCI(places, url, pos){
   }
 
   locationAPI(url)
+    console.log(lAPI);
     .then(function(data){
       return new Promise(function (resolve,reject){
       const jsonObj = JSON.stringify(data);
@@ -134,9 +144,9 @@ function callAPIOCI(places, url, pos){
   });
 }
 
-function touchAPI1(){
-  navigator.geolocation.getCurrentPosition(success, error, options);
-}
+// function touchAPI1(){
+//   navigator.geolocation.getCurrentPosition(success, error, options);
+// }
 
 var options = {
   enableHighAccuracy: true,
@@ -145,6 +155,7 @@ var options = {
 };
 
 function success(pos) {
+  console.log(success);
   const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
   const place = document.getElementById("plase").value;
   const URL = urlTemp + place;
