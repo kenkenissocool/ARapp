@@ -1,0 +1,64 @@
+{
+    "polygons":[],
+    "options":{
+        "zoom":16,"profile":"foot-walking","preference":"recommended"
+    },
+    "places":[{
+            "lng":140.10733366012576,"lat":36.1087388912266,"placeName":"Gakuenhigashi-odori Avenue, 筑波,IB,日本","unresolved":false,"suggestions":[],"coordinates":[140.10733366012576,36.1087388912266],"properties":{},"direct":false
+        },
+        {
+            "lng":140.09319305419925,"lat":36.10471691665061,"placeName":"Hiratsuka-dori Avenue, 筑波,IB,日本","unresolved":false,"suggestions":[],"coordinates":[140.09319305419925,36.10471691665061],"properties":{},"direct":false
+        }
+    ],
+    "pois":[],
+    "routes":[
+        {
+            "bbox":[140.093184,36.104738,25,140.107368,36.108742,31.91],
+            "type":"Feature",
+            "properties":{
+                "ascent":9.3,"descent":3,"segments":[{
+                    "distance":1.388,"duration":999.3,"steps":[{
+                            "distance":0.003,"duration":2.4,"type":11,"instruction":"Head southwest on <b>平塚通り, 24</b>","name":"平塚通り, 24","way_points":[0,1]
+                        },
+                        {
+                            "distance":0.012,"duration":8.6,"type":0,"instruction":"Turn left onto <b>学園東大通り, 24, 55</b>","name":"学園東大通り, 24, 55","way_points":[1,2]
+                        },
+                        {
+                            "distance":0.865,"duration":622.5,"type":1,"instruction":"Turn right","name":"-","way_points":[2,17]
+                        },
+                        {
+                            "distance":0.015,"duration":10.8,"type":1,"instruction":"Turn right","name":"-","way_points":[17,19]
+                        },
+                        {
+                            "distance":0.493,"duration":355,"type":0,"instruction":"Turn left onto <b>平塚通り, 24</b>","name":"平塚通り, 24","way_points":[19,27]
+                        },
+                        {
+                            "distance":0,"duration":0,"type":10,"instruction":"Arrive at 平塚通り, 24, on the left","name":"-","way_points":[27,27]
+                        }
+                    ],
+                    "ascent":9.287189463206701,
+                    "descent":3.048559311458039
+                }],
+                "extras":{
+                    "surface":{
+                        "values":[[0,1,1],[1,2,3],[2,19,0],[19,27,1]],
+                        "summary":[{
+                            "value":0,"distance":0.9,"amount":63.37},{"value":1,"distance":0.5,"amount":35.76},{"value":3,"distance":0,"amount":0.86}
+                        ]
+                    },
+                    "waytypes":{
+                        "values":[[0,2,1],[2,19,7],[19,27,1]],
+                        "summary":[{
+                            "value":7,"distance":0.9,"amount":63.37},{"value":1,"distance":0.5,"amount":36.63}
+                        ]
+                    },
+                    "steepness":{
+                        "values":[[0,27,0]],
+                        "summary":[{"value":0,"distance":1.4,"amount":100}]
+                    }
+                },
+                "summary":{"distance":1.388,"duration":999.3},
+                "way_points":[0,27],
+                "opacity":0.9
+            },
+            "geometry":{"coordinates":[[140.107328,36.108742,25],[140.107306,36.108717,25],[140.107368,36.108622,25],[140.10729,36.108582,25],[140.107228,36.108566,25],[140.106863,36.108433,25],[140.104811,36.107508,26.6],[140.10477,36.10749,26.8],[140.104719,36.107468,26.9],[140.102682,36.106549,30.1],[140.102633,36.106527,30.3],[140.102589,36.106507,30.5],[140.102558,36.106497,30.6],[140.101832,36.106268,31.8],[140.101531,36.106173,31.9],[140.100747,36.106026,31.9],[140.1006,36.105999,31.8],[140.098573,36.105619,29.1],[140.098547,36.105672,29],[140.098524,36.105748,29],[140.098422,36.10573,29],[140.098143,36.105682,29],[140.097306,36.105539,29.2],[140.095675,36.10526,30.4],[140.095048,36.105149,30.9],[140.094382,36.105031,31.3],[140.093989,36.104952,31.4],[140.093184,36.104738,31.2]],"type":"LineString"},"summary":{"distance":1.388,"duration":999.3,"descent":3,"ascent":9.3,"unit":"km","originalUnit":"km"}}],"origin":"response","mode":"directions","isRouteData":true,"rawData":{"type":"FeatureCollection","features":[{"bbox":[140.093184,36.104738,25,140.107368,36.108742,31.91],"type":"Feature","properties":{"ascent":9.3,"descent":3,"segments":[{"distance":1.388,"duration":999.3,"steps":[{"distance":0.003,"duration":2.4,"type":11,"instruction":"Head southwest on <b>平塚通り, 24</b>","name":"平塚通り, 24","way_points":[0,1]},{"distance":0.012,"duration":8.6,"type":0,"instruction":"Turn left onto <b>学園東大通り, 24, 55</b>","name":"学園東大通り, 24, 55","way_points":[1,2]},{"distance":0.865,"duration":622.5,"type":1,"instruction":"Turn right","name":"-","way_points":[2,17]},{"distance":0.015,"duration":10.8,"type":1,"instruction":"Turn right","name":"-","way_points":[17,19]},{"distance":0.493,"duration":355,"type":0,"instruction":"Turn left onto <b>平塚通り, 24</b>","name":"平塚通り, 24","way_points":[19,27]},{"distance":0,"duration":0,"type":10,"instruction":"Arrive at 平塚通り, 24, on the left","name":"-","way_points":[27,27]}],"ascent":9.287189463206701,"descent":3.048559311458039}],"extras":{"surface":{"values":[[0,1,1],[1,2,3],[2,19,0],[19,27,1]],"summary":[{"value":0,"distance":0.9,"amount":63.37},{"value":1,"distance":0.5,"amount":35.76},{"value":3,"distance":0,"amount":0.86}]},"waytypes":{"values":[[0,2,1],[2,19,7],[19,27,1]],"summary":[{"value":7,"distance":0.9,"amount":63.37},{"value":1,"distance":0.5,"amount":36.63}]},"steepness":{"values":[[0,27,0]],"summary":[{"value":0,"distance":1.4,"amount":100}]}},"summary":{"distance":1.388,"duration":999.3},"way_points":[0,27]},"geometry":{"coordinates":[[140.107328,36.108742,25],[140.107306,36.108717,25],[140.107368,36.108622,25],[140.10729,36.108582,25],[140.107228,36.108566,25],[140.106863,36.108433,25],[140.104811,36.107508,26.6],[140.10477,36.10749,26.8],[140.104719,36.107468,26.9],[140.102682,36.106549,30.1],[140.102633,36.106527,30.3],[140.102589,36.106507,30.5],[140.102558,36.106497,30.6],[140.101832,36.106268,31.8],[140.101531,36.106173,31.9],[140.100747,36.106026,31.9],[140.1006,36.105999,31.8],[140.098573,36.105619,29.1],[140.098547,36.105672,29],[140.098524,36.105748,29],[140.098422,36.10573,29],[140.098143,36.105682,29],[140.097306,36.105539,29.2],[140.095675,36.10526,30.4],[140.095048,36.105149,30.9],[140.094382,36.105031,31.3],[140.093989,36.104952,31.4],[140.093184,36.104738,31.2]],"type":"LineString"},"summary":{"distance":1.388,"duration":999.3,"descent":3,"ascent":9.3,"unit":"km","originalUnit":"km"}}],"bbox":[140.093184,36.104738,25,140.107368,36.108742,31.91],"metadata":{"attribution":"openrouteservice.org | OpenStreetMap contributors","service":"routing","timestamp":1656061840688,"query":{"coordinates":[[140.10733366012576,36.1087388912266],[140.09319305419925,36.10471691665061]],"profile":"foot-walking","preference":"recommended","format":"geojson","units":"km","language":"en","instructions_format":"html","elevation":true,"extra_info":["surface","steepness","waytype"]},"engine":{"version":"6.7.0","build_date":"2022-02-18T19:37:41Z","graph_date":"2022-06-14T09:39:32Z"}}},"timestamp":1656061840688}
