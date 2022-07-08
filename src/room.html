@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>教室選択</title>
+  <title>教室選択v1</title>
 </head>
 <body>
     <h1><p>教室を選んでください
@@ -23,9 +23,8 @@
     <script type="text/javascript">
         function routepage(){
             const room = document.getElementById("room").value;
-            const url = "roomroute.html"
-            url.searchParams.append('room',room);
-            location.href = url;
+            const url = "roomroute.html?"
+            location.href = url+room;
         }
     </script>
 </html>

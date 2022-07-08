@@ -6,8 +6,7 @@
 行きたい教室は <span id = "resp"></span>ですね？
 </body>
 <script>
-    let url = new URL(window.location.href);
-    const room = url.searchParams.get('username');
+    const room = location.search.substring(1);
     document.getElementById("resp").innerHTML = room;
 </script>
 </html>
