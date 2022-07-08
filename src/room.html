@@ -18,12 +18,12 @@
         <option value="3C209">3C209</option>
         </select>
     <br>
-    <p>返答: <span id = "resp"></p>
-    <input type="button" value="選択" onclick="nextpage()"/>
+    <input type="button" value="選択" onclick="routepage()"/>
 
     <script type="text/javascript">
-        function nextpage(){
-            location.href = "roomroute.html";
+        function routepage(){
+            const room = document.getElementById("room").value;
+            location.href = "roomroute.html?"+room;
         }
     </script>
 </html>
