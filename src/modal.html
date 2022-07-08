@@ -34,7 +34,7 @@
     		</select>
     		<br>
     		<p>返答: <span id = "resp"></p>
-    		<input type="button" value="選択" onclick="touchAPI1()"/>
+    		<input id="fire" type="button" value="選択" onclick="touchAPI1()"/>
 			<p><a id="modal-close" class="button-link">閉じる</a></p>
 		</div>
 		<a-scene
@@ -54,7 +54,7 @@
 		
 		
 		<script type="text/javascript">
-			var myElement = document.getElementById('resp');
+			var myElement = document.getElementById('fire');
 
 			export class CalcVR {
 			  constructor() {
