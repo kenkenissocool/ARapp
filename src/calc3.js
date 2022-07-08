@@ -81,7 +81,7 @@ function callAPIOCI(url, pos){
       request.send(body);
       const geoJSON = request.responseText;
       console.log(geoJSON);
-      var geoparse = JSON.parse(geoJSON);
+      var geoparse = JSON.stringify(geoJSON);
 
       const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
       const coords = geojson.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
