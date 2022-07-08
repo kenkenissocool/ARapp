@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教室選択</title>
+</head>
+<body>
+    <h1><p>教室を選んでください
+    </p></h1>
+        <label for="room">行きたい教室を選択</label>
+        <select id="room">
+        <option value="COJT-HW">3C203(COJT-ハードウエアコース)</option>
+        <option value="COJT-SW">3C203(COJT-ソフトウエアコース)</option>
+        <option value="3E203">3E203(創房)</option>
+        <option value="3C213">3C213(情報科学類ラウンジ)</option>
+        <option value="3C209">3C209</option>
+        </select>
+    <br>
+    <p>返答: <span id = "resp"></p>
+    <input type="button" value="選択" onclick="nextpage()"/>
+
+    <script type="text/javascript">
+        function nextpage(){
+            location.href = "roomroute.html";
+        }
+    </script>
+</html>
