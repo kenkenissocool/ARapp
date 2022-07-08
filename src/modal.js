@@ -25,7 +25,6 @@
 
 $(function(){
 
-
 $("#modal-open").click( function(){
 
 	$( this ).blur() ;	//ボタンからフォーカスを外す
