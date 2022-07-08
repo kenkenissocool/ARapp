@@ -1,8 +1,12 @@
 <html>
 <head>
-<title>Hello world !</title>
+<title>教室選択</title>
 </head>
 <body>
-Hello world !
+行きたい教室は <span id = "resp"></span>ですね？
 </body>
+<script>
+    const url = location.search;
+    document.getElementById("resp").innerHTML = url;
+</script>
 </html>
