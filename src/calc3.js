@@ -146,10 +146,6 @@ function renderPlaces(places, pos) {
   });
 }
 
-// function touchAPI1(){
-//   navigator.geolocation.getCurrentPosition(success, error, options);
-// }
-
 var options = {
   enableHighAccuracy: true,
   timeout: 50000,
