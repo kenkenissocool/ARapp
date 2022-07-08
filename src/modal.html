@@ -12,8 +12,6 @@
 	</head>
 
 	<body style="margin: 0; overflow: hidden;">
-		<h1 style="text-align:center;color:#d36015;">モーダルウィンドウのデモ</h1>
-		<p>リンクテキストをクリックするとモーダルウィンドウを表示させます。モーダルウィンドウ周りのオーバーレイをクリックすると終了します。</p>
 		<p><a id="modal-open" class="button-link">クリックするとモーダルウィンドウを開きます。</a></p>
 
 		<HR style="margin: 3em 0 ;">
@@ -56,6 +54,8 @@
 		
 		
 		<script type="text/javascript">
+			var myElement = document.getElementById('resp');
+
 			export class CalcVR {
 			  constructor() {
 			    this.latBetween = 0;
@@ -78,9 +78,15 @@
 			  return coordinates;
 			}
 
-			function touchAPI1(){
-			  navigator.geolocation.getCurrentPosition(success, error, options);
-			}
+
+			myElement.addEventListener('click', function(event) {
+				navigator.geolocation.getCurrentPosition(success, error, options);
+				console.log('My HTML element was clicked, woot woot!');
+			});
+
+			// function touchAPI1(){
+			//   navigator.geolocation.getCurrentPosition(success, error, options);
+			// }
 
 			function callAPIOCI(places, url, pos){
 			  let coordinates = [];
