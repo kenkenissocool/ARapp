@@ -55,9 +55,6 @@
 		<p style="text-align:center"><a href="https://syncer.jp/jquery-modal-window">配布元: Syncer</a></p>
 		
 		
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<script src="modal.js"></script>
 		<script type="text/javascript">
 			export class CalcVR {
 			  constructor() {
@@ -79,6 +76,10 @@
 
 			function staticLoadPlaces() {
 			  return coordinates;
+			}
+
+			function touchAPI1(){
+			  navigator.geolocation.getCurrentPosition(success, error, options);
 			}
 
 			function callAPIOCI(places, url, pos){
@@ -195,10 +196,6 @@
 			  });
 			}
 
-			function touchAPI1(){
-			  navigator.geolocation.getCurrentPosition(success, error, options);
-			}
-
 			var options = {
 			  enableHighAccuracy: true,
 			  timeout: 50000,
@@ -223,5 +220,8 @@
 
 			console.log("JavaScriptを実行しています");
 		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="modal.js"></script>
+		
 	</body>
 </html>
