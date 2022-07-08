@@ -1,8 +1,6 @@
 var myElement = document.getElementById('fire');
 let coordinates = [];
-window.onload = async () => {
-  navigator.geolocation.getCurrentPosition(success, error, options);
-};
+
 
 export class CalcVR {
   constructor() {
@@ -75,7 +73,7 @@ function callAPIOCI(url, pos){
         if (this.readyState === 4) {
           console.log('Status:', this.status);
           console.log('Headers:', this.getAllResponseHeaders());
-          console.log('Body:', this.responseText);
+          console.log(this.responseText);
         }
       };
       console.log(value);
