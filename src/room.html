@@ -23,7 +23,9 @@
     <script type="text/javascript">
         function routepage(){
             const room = document.getElementById("room").value;
-            location.href = "roomroute.html?"+room;
+            const url = "roomroute.html"
+            url.searchParams.append('room',room);
+            location.href = url;
         }
     </script>
 </html>
