@@ -5,10 +5,13 @@
 		<meta name="robots" content="noindex,nofollow">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="modal.css" rel="stylesheet">
+		<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 		<title>モーダルウィンドウのデモ</title>
 	</head>
 
-	<body>
+	<body style="margin: 0; overflow: hidden;">
 		<h1 style="text-align:center;color:#d36015;">モーダルウィンドウのデモ</h1>
 		<p>リンクテキストをクリックするとモーダルウィンドウを表示させます。モーダルウィンドウ周りのオーバーレイをクリックすると終了します。</p>
 		
@@ -35,7 +38,14 @@
     		<input type="button" value="選択" onclick="touchAPI1()"/>
 			<p><a id="modal-close" class="button-link">閉じる</a></p>
 		</div>
-
+		<a-scene
+            renderer="logarithmicDepthBuffer: true;"
+            embedded
+            loading-screen="enabled: false;"
+            arjs="sourceType: webcam; debugUIEnabled: true;"
+        >
+            <a-camera gps-camera="gpsMinDistance:5;" rotation-reader></a-camera>
+        </a-scene>
 		<p><a id="modal-open" class="button-link">クリックするとモーダルウィンドウを開きます。</a></p>
 		<!-- ここまでモーダルウィンドウ -->
 
@@ -66,11 +76,11 @@
 			    }
 			  }
 			}
-			
+
 			function staticLoadPlaces() {
 			  return coordinates;
 			}
-			
+
 			function callAPIOCI(places, url, pos){
 			  let coordinates = [];
 			  let lat;
@@ -184,17 +194,17 @@
 			      lastlon = longitude;
 			  });
 			}
-			
+
 			function touchAPI1(){
 			  navigator.geolocation.getCurrentPosition(success, error, options);
 			}
-			
+
 			var options = {
 			  enableHighAccuracy: true,
 			  timeout: 50000,
 			  maximumAge: 0,
 			};
-			
+
 			function success(pos) {
 			  const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
 			  const place = document.getElementById("plase").value;
@@ -205,12 +215,12 @@
 			
 			  console.log(JN);
 			}
-			
+
 			function error(err) {
 			  console.warn(`ERROR(${err.code}): ${err.message}`);
 			  alert("Unable to capture current location.");
 			}
-			
+
 			console.log("JavaScriptを実行しています");
 		</script>
 	</body>
