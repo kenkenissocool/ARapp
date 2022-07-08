@@ -36,6 +36,8 @@ function callAPIOCI(url, pos){
   var crd = pos.coords;
   let currentlat = crd.latitude;
   let currentlon = crd.longitude;
+  console.log(currentlat);
+
 
   const locationAPI = async(urlz) =>{
     const response = await fetch(urlz,{method : "get"});
@@ -78,6 +80,7 @@ function callAPIOCI(url, pos){
       request.send(body);
       const geoJSON = request.responseText;
       console.log(geoJSON);
+
       const geojson = geoJSON.json(); //awaitして、resにjson()を適用させたものをjsonの中に
       const coords = geojson.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
       coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
