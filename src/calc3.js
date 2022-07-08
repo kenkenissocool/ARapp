@@ -1,4 +1,6 @@
 var myElement = document.getElementById('fire');
+let coordinates = [];
+
 
 export class CalcVR {
   constructor() {
@@ -30,12 +32,13 @@ function staticLoadPlaces() {
 function callAPIOCI(url, pos){
   console.log('APIOCI');
 
-  let coordinates = [];
   let lat;
   let lon;
   var crd = pos.coords;
   let currentlat = crd.latitude;
   let currentlon = crd.longitude;
+  console.log(currentlat);
+
 
   const locationAPI = async(urlz) =>{
     const response = await fetch(urlz,{method : "get"});
@@ -70,7 +73,7 @@ function callAPIOCI(url, pos){
         if (this.readyState === 4) {
           console.log('Status:', this.status);
           console.log('Headers:', this.getAllResponseHeaders());
-          console.log('Body:', this.responseText);
+          console.log(this.responseText);
         }
       };
       console.log(value);
@@ -78,7 +81,9 @@ function callAPIOCI(url, pos){
       request.send(body);
       const geoJSON = request.responseText;
       console.log(geoJSON);
-      const geojson = geoJSON.json(); //awaitして、resにjson()を適用させたものをjsonの中に
+      var geoparse = JSON.parse(geoJSON);
+
+      const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
       const coords = geojson.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
       coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
         return {
@@ -142,10 +147,6 @@ function renderPlaces(places, pos) {
       lastlon = longitude;
   });
 }
-
-// function touchAPI1(){
-//   navigator.geolocation.getCurrentPosition(success, error, options);
-// }
 
 var options = {
   enableHighAccuracy: true,
