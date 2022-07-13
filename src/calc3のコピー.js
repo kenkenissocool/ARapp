@@ -22,8 +22,7 @@ export class CalcVR {
 
 myElement.addEventListener('click', function(event) {
   console.log('My HTML element was clicked, woot woot!');
-  //success();
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  //navigator.geolocation.getCurrentPosition(success, error, options);
 });
 
 function staticLoadPlaces() {
@@ -35,9 +34,9 @@ function callAPIOCI(url, pos){
 
   let lat;
   let lon;
-  var crd = pos.coords;
-  let currentlat = crd.latitude;//36.110443941860225; 
-  let currentlon = crd.longitude;//140.1004002308503; 
+  //var crd = pos.coords;
+  let currentlat = 36.110443941860225; //crd.latitude;
+  let currentlon = 140.1004002308503; //crd.longitude;
   console.log(currentlat);
 
 
@@ -77,33 +76,27 @@ function callAPIOCI(url, pos){
           console.log(this.responseText);
         }
       };
-
       console.log(value);
       const body = '{"coordinates":[['+ currentlon +', '+ currentlat +'],['+ value + ']]}';
       request.send(body);
       const geoJSON = request.responseText;
       console.log(geoJSON);
+      var geoparse = JSON.parse(request.responseText);
+      console.log(geoparse);
 
-      request.onload = () =>{
-        console.log(geoJSON);
-        var geoparse = JSON.parse(request.responseText);
-        console.log(geoparse);
-        //const res = fetch("geojson");
-        //const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
-        const coords = geoparse.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
-        coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
-          return {
-            name: "test",
-            location: {
-              lat: coord[1],
-              lon: coord[0],
-            },
-          };
-        });
-        console.log(coordinates);
-        let places = staticLoadPlaces();
-        renderPlaces(places, pos);
-      }
+      //const res = fetch("geojson");
+      const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
+      const coords = geojson.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
+      coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
+        return {
+          name: "test",
+          location: {
+            lat: coord[1],
+            lon: coord[0],
+          },
+        };
+      });
+      console.log(coordinates);
     })
     .catch((err) =>{
       console.log(err);
@@ -111,12 +104,11 @@ function callAPIOCI(url, pos){
 }
 
 function renderPlaces(places, pos) {
-  console.log("imhere2");
   let scene = document.querySelector("a-scene");
   let cal = new CalcVR();
   let id = 0;
-  let lastlat = pos.coords.latitude; //36.110443941860225;
-  let lastlon = pos.coords.longitude; //140.1004002308503;
+  let lastlat = 36.110443941860225;//pos.coords.latitude;
+  let lastlon = 140.1004002308503; //pos.coords.longitude;
 
   places.forEach((place) => {
     let latitude = place.location.lat;
@@ -134,7 +126,7 @@ function renderPlaces(places, pos) {
       "gps-entity-place",
       `latitude: ${latitude}; longitude: ${longitude};`
     );
-    model.setAttribute("scale", `${10} ${10} ${10}`);
+    model.setAttribute("scale", `${1} ${1} ${1}`);
     model.addEventListener("loaded", () => {
       window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
     });
@@ -171,9 +163,8 @@ function success(pos) {
   const URL = urlTemp + place;
 
   const JN = callAPIOCI(URL, pos);
-  //let places = staticLoadPlaces();
-  console.log("imhere");
-  //renderPlaces(places);
+  let places = staticLoadPlaces();
+  renderPlaces(places, pos);
   
   console.log(JN);
 }
