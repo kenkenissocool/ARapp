@@ -22,7 +22,6 @@ export class CalcVR {
 
 myElement.addEventListener('click', function(event) {
   console.log('My HTML element was clicked, woot woot!');
-  success();
   //navigator.geolocation.getCurrentPosition(success, error, options);
 });
 
@@ -30,7 +29,7 @@ function staticLoadPlaces() {
   return coordinates;
 }
 
-function callAPIOCI(url){
+function callAPIOCI(url, pos){
   console.log('APIOCI');
 
   let lat;
@@ -65,53 +64,46 @@ function callAPIOCI(url){
       resolve(location);});
     })
     .then(function(value){
-      return new Promise(function (resolve,reject){
-        let request = new XMLHttpRequest();
-        request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
-        request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.setRequestHeader('Authorization', '5b3ce3597851110001cf6248a9c8937ac7a74664b0dc317c69d6c058');
-        request.onreadystatechange = function () {
-          if (this.readyState === 4) {
-            console.log('Status:', this.status);
-            console.log('Headers:', this.getAllResponseHeaders());
-            console.log(this.responseText);
-          }
+      let request = new XMLHttpRequest();
+      request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
+      request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.setRequestHeader('Authorization', '5b3ce3597851110001cf6248a9c8937ac7a74664b0dc317c69d6c058');
+      request.onreadystatechange = function () {
+        if (this.readyState === 4) {
+          console.log('Status:', this.status);
+          console.log('Headers:', this.getAllResponseHeaders());
+          console.log(this.responseText);
+        }
+      };
+      console.log(value);
+      const body = '{"coordinates":[['+ currentlon +', '+ currentlat +'],['+ value + ']]}';
+      request.send(body);
+      const geoJSON = request.responseText;
+      console.log(geoJSON);
+      var geoparse = JSON.parse(request.responseText);
+      console.log(geoparse);
+
+      //const res = fetch("geojson");
+      const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
+      const coords = geojson.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
+      coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
+        return {
+          name: "test",
+          location: {
+            lat: coord[1],
+            lon: coord[0],
+          },
         };
-        console.log(value);
-        const body = '{"coordinates":[['+ currentlon +', '+ currentlat +'],['+ value + ']]}';
-        request.send(body);
-        const geoJSON = request.responseText;
-        console.log(geoJSON);
-      resolve(responseText);});
+      });
+      console.log(coordinates);
     })
-    .then(function(data){
-      return new Promise(function (resolve,reject){
-        var geoparse = JSON.parse(request.responseText);
-        console.log(geoparse);
-
-        //const res = fetch("geojson");
-        //const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
-        const coords = geoparse.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
-        coordinates = coords.map((coord) => { //coordsの配列の一つ一つに対してcoordというアロー関数を使ってcoordinatesに
-          return {
-            name: "test",
-            location: {
-              lat: coord[1],
-              lon: coord[0],
-            },
-          };
-        });
-        console.log(coordinates);
-      resolve(location);});
-    })
-
     .catch((err) =>{
       console.log(err);
     });
 }
 
-function renderPlaces(places) {
+function renderPlaces(places, pos) {
   let scene = document.querySelector("a-scene");
   let cal = new CalcVR();
   let id = 0;
@@ -164,15 +156,15 @@ var options = {
   maximumAge: 0,
 };
 
-function success() {
+function success(pos) {
   console.log(success);
   const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
   const place = document.getElementById("plase").value;
   const URL = urlTemp + place;
 
-  const JN = callAPIOCI(URL);
+  const JN = callAPIOCI(URL, pos);
   let places = staticLoadPlaces();
-  renderPlaces(places);
+  renderPlaces(places, pos);
   
   console.log(JN);
 }
