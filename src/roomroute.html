@@ -3,10 +3,18 @@
 <title>教室選択</title>
 </head>
 <body>
-行きたい教室は <span id = "resp"></span>ですね？
+<h2>行きたい教室は <span id = "resp"></span>ですね？</h2><br>
+<input type="button" value="選択" onclick="touchAPI1()"/>
 </body>
 <script>
     const room = location.search.substring(1);
     document.getElementById("resp").innerHTML = room;
+
+    async function touchAPI1(){
+        const urltemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/4/";
+        const url = urltemp + room;
+
+        
+    }
 </script>
 </html>
