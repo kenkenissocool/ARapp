@@ -4,7 +4,7 @@
 </head>
 <body>
 <h2>行きたい教室は <span id = "resp"></span>ですね？</h2><br>
-<input type="button" value="OK!!!" onclick="touchAPI1()"/>
+<input type="button" value="OK!!!!" onclick="touchAPI1()"/>
 </body>
 <script>
     const room = location.search.substring(1);
@@ -27,7 +27,7 @@
         routeAPI(url)
             .then(function(data){
                 const items = data.items;
-                consple.log(items);
+                console.log(items);
                 Object.keys(items).forEach(function(key) {
                     var val = this[key]; // this は items
                     console.log(key, val);
