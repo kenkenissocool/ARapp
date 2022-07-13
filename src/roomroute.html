@@ -27,6 +27,7 @@
         routeAPI(url)
             .then(function(data){
                 const items = data.items;
+                consple.log(items);
                 Object.keys(items).forEach(function(key) {
                     var val = this[key]; // this は items
                     console.log(key, val);
