@@ -4,7 +4,7 @@
 </head>
 <body>
 <h2>行きたい教室は <span id = "resp"></span>ですね？</h2><br>
-<input type="button" value="OK!" onclick="touchAPI1()"/>
+<input type="button" value="OK" onclick="touchAPI1()"/>
 </body>
 <script>
     const room = location.search.substring(1);
@@ -32,7 +32,7 @@
                     console.log(key, val);
                     window.sessionStorage.setItem(key,val);
                 }, items);
-                window.location.href('sessionTest.html');
+                window.location.href('./sessionTest.html');
             })
     }
 </script>
