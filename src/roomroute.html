@@ -14,7 +14,26 @@
         const urltemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/4/";
         const url = urltemp + room;
 
-        
+        const routeAPI = async(urlz) =>{
+                const response = await fetch(urlz,{method : "get"});
+                const json = response.json();
+                if (response.status == 200){
+                    return Promise.resolve(json);
+                }else{
+                    return Promise.reject(json.error);
+                }
+        }
+
+        routeAPI(url)
+            .then(function(data){
+                const items = data.items;
+                Object.keys(items).forEach(function(key) {
+                    var val = this[key]; // this は items
+                    console.log(key, val);
+                    window.sessionStorage.setItem(key,val);
+                }, items);
+                window.location.href('sessionTest.html');
+            })
     }
 </script>
 </html>
