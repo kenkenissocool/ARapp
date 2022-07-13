@@ -82,6 +82,7 @@ function callAPIOCI(url, pos){
       const geoJSON = request.responseText;
       console.log(geoJSON);
       var geoparse = JSON.parse(request.responseText);
+      console.log(geoparse);
 
       //const res = fetch("geojson");
       const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
