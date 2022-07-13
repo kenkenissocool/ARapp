@@ -24,7 +24,7 @@
 
         routeAPI(url)
             .then(async function(data){
-                const items = data.items;
+                const items = data.items[0];
                 console.log(items);
                 Object.keys(items).forEach(function(key) {
                     var val = this[key]; // this は items
