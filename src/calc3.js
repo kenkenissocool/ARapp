@@ -22,22 +22,22 @@ export class CalcVR {
 
 myElement.addEventListener('click', function(event) {
   console.log('My HTML element was clicked, woot woot!');
-  success();
-  //navigator.geolocation.getCurrentPosition(success, error, options);
+  //success();
+  navigator.geolocation.getCurrentPosition(success, error, options);
 });
 
 function staticLoadPlaces() {
   return coordinates;
 }
 
-function callAPIOCI(url){
+function callAPIOCI(url, pos){
   console.log('APIOCI');
 
   let lat;
   let lon;
-  //var crd = pos.coords;
-  let currentlat = 36.110443941860225; //crd.latitude;
-  let currentlon = 140.1004002308503; //crd.longitude;
+  var crd = pos.coords;
+  let currentlat = crd.latitude;//36.110443941860225; 
+  let currentlon = crd.longitude;//140.1004002308503; 
   console.log(currentlat);
 
 
@@ -102,7 +102,7 @@ function callAPIOCI(url){
         });
         console.log(coordinates);
         let places = staticLoadPlaces();
-        renderPlaces(places);
+        renderPlaces(places, pos);
       }
     })
     .catch((err) =>{
@@ -110,13 +110,13 @@ function callAPIOCI(url){
     });
 }
 
-function renderPlaces(places) {
+function renderPlaces(places, pos) {
   console.log("imhere2");
   let scene = document.querySelector("a-scene");
   let cal = new CalcVR();
   let id = 0;
-  let lastlat = 36.110443941860225;//pos.coords.latitude;
-  let lastlon = 140.1004002308503; //pos.coords.longitude;
+  let lastlat = pos.coords.latitude; //36.110443941860225;
+  let lastlon = pos.coords.longitude; //140.1004002308503;
 
   places.forEach((place) => {
     let latitude = place.location.lat;
@@ -164,13 +164,13 @@ var options = {
   maximumAge: 0,
 };
 
-function success() {
+function success(pos) {
   console.log(success);
   const urlTemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/2/";
   const place = document.getElementById("plase").value;
   const URL = urlTemp + place;
 
-  const JN = callAPIOCI(URL);
+  const JN = callAPIOCI(URL, pos);
   //let places = staticLoadPlaces();
   console.log("imhere");
   //renderPlaces(places);
