@@ -23,19 +23,19 @@
         }
 
         routeAPI(url)
-            .then(function(data){
+            .then(async function(data){
                 const items = data.items;
                 console.log(items);
                 Object.keys(items).forEach(function(key) {
                     var val = this[key]; // this は items
-                    console.log(key, val);
-                    sessionStorage.setItem(key,val);
+                    console.log([key], [val]);
+                    sessionStorage.setItem([key],[val]);
                 }, items);
                 await delay(5);
                 
             })
             .then(function(){
-                console.log(sessionStorage.getItem("1"));
+                console.log(sessionStorage.getItem(['1']));
                 window.location.href='https://kenkenissocool.github.io/ARapp/src/sessionTest.html';
             })
     }
