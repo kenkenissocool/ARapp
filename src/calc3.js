@@ -65,31 +65,29 @@ function callAPIOCI(url){
       resolve(location);});
     })
     .then(function(value){
-      return new Promise(function (resolve,reject){
-        let request = new XMLHttpRequest();
-        request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
-        request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.setRequestHeader('Authorization', '5b3ce3597851110001cf6248a9c8937ac7a74664b0dc317c69d6c058');
-        request.onreadystatechange = function () {
-          if (this.readyState === 4) {
-            console.log('Status:', this.status);
-            console.log('Headers:', this.getAllResponseHeaders());
-            console.log(this.responseText);
-          }
-        };
-        console.log(value);
-        const body = '{"coordinates":[['+ currentlon +', '+ currentlat +'],['+ value + ']]}';
-        request.send(body);
-        const geoJSON = request.responseText;
+      let request = new XMLHttpRequest();
+      request.open('POST', "https://api.openrouteservice.org/v2/directions/foot-walking/geojson");
+      request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
+      request.setRequestHeader('Content-Type', 'application/json');
+      request.setRequestHeader('Authorization', '5b3ce3597851110001cf6248a9c8937ac7a74664b0dc317c69d6c058');
+      request.onreadystatechange = function () {
+        if (this.readyState === 4) {
+          console.log('Status:', this.status);
+          console.log('Headers:', this.getAllResponseHeaders());
+          console.log(this.responseText);
+        }
+      };
+
+      console.log(value);
+      const body = '{"coordinates":[['+ currentlon +', '+ currentlat +'],['+ value + ']]}';
+      request.send(body);
+      const geoJSON = request.responseText;
+      console.log(geoJSON);
+
+      request.onload = () =>{
         console.log(geoJSON);
-      resolve(responseText);});
-    })
-    .then(function(data){
-      return new Promise(function (resolve,reject){
         var geoparse = JSON.parse(request.responseText);
         console.log(geoparse);
-
         //const res = fetch("geojson");
         //const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
         const coords = geoparse.features[0].geometry.coordinates; //jsonのroutesのgeometryのcoordinatesをcoordsに
@@ -103,15 +101,17 @@ function callAPIOCI(url){
           };
         });
         console.log(coordinates);
-      resolve(location);});
+        let places = staticLoadPlaces();
+        renderPlaces(places);
+      }
     })
-
     .catch((err) =>{
       console.log(err);
     });
 }
 
 function renderPlaces(places) {
+  console.log("imhere2");
   let scene = document.querySelector("a-scene");
   let cal = new CalcVR();
   let id = 0;
@@ -171,8 +171,9 @@ function success() {
   const URL = urlTemp + place;
 
   const JN = callAPIOCI(URL);
-  let places = staticLoadPlaces();
-  renderPlaces(places);
+  //let places = staticLoadPlaces();
+  console.log("imhere");
+  //renderPlaces(places);
   
   console.log(JN);
 }
