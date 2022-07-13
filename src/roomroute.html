@@ -4,7 +4,7 @@
 </head>
 <body>
 <h2>行きたい教室は <span id = "resp"></span>ですね？</h2><br>
-<input type="button" value="OK!!!!" onclick="touchAPI1()"/>
+<input type="button" value="OK!!!!!" onclick="touchAPI1()"/>
 </body>
 <script>
     const room = location.search.substring(1);
@@ -31,10 +31,11 @@
                 Object.keys(items).forEach(function(key) {
                     var val = this[key]; // this は items
                     console.log(key, val);
-                    window.sessionStorage.setItem(key,val);
+                    window.sessionStorage.setItem([key],[val]);
                 }, items);
                 window.location.href('https://kenkenissocool.github.io/ARapp/src/sessionTest.html');
             })
+        return false;
     }
 </script>
 </html>
