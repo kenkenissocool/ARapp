@@ -22,7 +22,7 @@ export class CalcVR {
 
 myElement.addEventListener('click', function(event) {
   console.log('My HTML element was clicked, woot woot!');
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  //navigator.geolocation.getCurrentPosition(success, error, options);
 });
 
 function staticLoadPlaces() {
@@ -77,11 +77,12 @@ function callAPIOCI(url, pos){
         }
       };
       console.log(value);
-      const body = '{"coordinates":[['+ currentlon +', '+ currentlat +'],['+ value + ']]}';
+      const body = '{"coordinates":[[140.1004002308503, 36.110443941860225],['+ value + ']]}';
       request.send(body);
       const geoJSON = request.responseText;
       console.log(geoJSON);
       var geoparse = JSON.parse(request.responseText);
+      console.log(geoparse);
 
       //const res = fetch("geojson");
       const geojson = geoparse.json(); //awaitして、resにjson()を適用させたものをjsonの中に
