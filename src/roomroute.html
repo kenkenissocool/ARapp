@@ -31,11 +31,11 @@
                     console.log([key], [val]);
                     sessionStorage.setItem([key],[val]);
                 }, items);
-                await delay(5);
-                
+                console.log(sessionStorage.getItem(['1']));
+                await Delay(10);
             })
             .then(function(){
-                console.log(sessionStorage.getItem(['1']));
+                
                 window.location.href='https://kenkenissocool.github.io/ARapp/src/sessionTest.html';
             })
     }
