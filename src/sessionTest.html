@@ -1,0 +1,12 @@
+<html>
+<head>
+<title>sessionTest</title>
+</head>
+<body>
+<h2>行きたい教室は <span id = "resp"></span>ですね？?</h2><br>
+</body>
+<script>
+    console.log(sessionStorage.getItem(['1']));
+    document.getElementById("resp").innerHTML = sessionStorage.getItem(['1']);
+</script>
+</html>

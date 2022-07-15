@@ -2,19 +2,41 @@
 <head>
 <title>教室選択</title>
 </head>
-<body>
-<h2>行きたい教室は <span id = "resp"></span>ですね？</h2><br>
-<input type="button" value="選択" onclick="touchAPI1()"/>
+<body onload="touchAPI1()">
+<h2>読み込み中</h2><br>
 </body>
 <script>
-    const room = location.search.substring(1);
-    document.getElementById("resp").innerHTML = room;
-
-    async function touchAPI1(){
+        async function touchAPI1(){
+        const room = location.search.substring(1);
+        document.getElementById("resp").innerHTML = room;
         const urltemp = "https://g965edebf922493-cojt1.adb.ap-osaka-1.oraclecloudapps.com/ords/admin/tslo/4/";
         const url = urltemp + room;
 
-        
+        const routeAPI = async(urlz) =>{
+                const response = await fetch(urlz,{method : "get"});
+                const json = response.json();
+                if (response.status == 200){
+                    return Promise.resolve(json);
+                }else{
+                    return Promise.reject(json.error);
+                }
+        }
+
+        routeAPI(url)
+            .then(async function(data){
+                const items = data.items[0];
+                console.log(items);
+                Object.keys(items).forEach(function(key) {
+                    var val = this[key]; // this は items
+                    console.log([key], [val]);
+                    sessionStorage.setItem([key],[val]);
+                }, items);
+                console.log(sessionStorage.getItem(['1']));
+            })
+            .then(function(){
+                
+                window.location.href='https://kenkenissocool.github.io/ARapp/src/sessionTest.html';
+            })
     }
 </script>
 </html>

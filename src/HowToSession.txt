@@ -1,0 +1,10 @@
+sessionで各ARマーカーでの方向を取得する方法を記述する。
+
+session内に格納されているのは、ARroute.csvに記された各要素である。記述の法則についてはroomroute.txtを参考とすること
+
+roomroute.htmlでは、データベースにアクセスしsession内にデータを格納する作業をした後、sessionTest.htmlにリダイレクトしている。
+これを、ARベースの道案内ページにリダイレクト先を変更しよう。(roomroute.html38行目のURLを変更)
+
+session内から変数を取り出すには、
+var (格納したい変数) = sessionStorage.getItem(['(キー)']);
+とすれば良い。キーはARroute.csvを参考にすること。
