@@ -28,7 +28,7 @@
       // let scene = document.querySelector("a-scene");
       // let marker = document.createElement("a-marker");
       // marker.setAttribute("type", `pattern`);
-      // marker.setAttribute("url", `pattern-ARmarker1.patt`);
+      // marker.setAttribute("url", `./data/ARmarker/pattern-ARmarker1.patt`);
 
       // let text = document.createElement("a-text");
       // text.setAttribute("value", `${ariadne}`);
@@ -43,13 +43,13 @@
 
   <body style="margin: 0px; overflow: hidden;">
     <a-scene embedded arjs>
-      <!-- <a-marker type="pattern" url='./data/ARmarker/pattern-ARmarker1.patt'>
+      <a-marker type="pattern" url='./data/ARmarker/pattern-ARmarker1.patt'>
         <a-text
         value="到着"
         look-at="[gps-camera]"
         position="0 -1 0"
         scale="1 1 1"></a-text>
-      </a-marker> -->
+      </a-marker>
       
       <a-marker type="pattern" url="./data/ARmarker/pattern-ARmarker1.patt">
         <a-box position="0 -1 0" scale="1 1 1" color="grey"></a-box>
