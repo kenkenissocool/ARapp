@@ -22,34 +22,34 @@
     //   } else if (point==6) {
     //     ariadne="下へさがる";
     //   }
-      var ariadne = "到着"
-      console.log(ariadne);
+      // var ariadne = "到着"
+      // console.log(ariadne);
 
-      let scene = document.querySelector("a-scene");
-      let marker = document.createElement("a-marker");
-      marker.setAttribute("type", `pattern`);
-      marker.setAttribute("url", `pattern-ARmarker1.patt`);
+      // let scene = document.querySelector("a-scene");
+      // let marker = document.createElement("a-marker");
+      // marker.setAttribute("type", `pattern`);
+      // marker.setAttribute("url", `pattern-ARmarker1.patt`);
 
-      let text = document.createElement("a-text");
-      text.setAttribute("value", `${ariadne}`);
-      text.setAttribute("look-at", "[gps-camera]");
-      text.setAttribute("position", "0 -1 0");
-      text.setAttribute("scale", "1 1 1");
+      // let text = document.createElement("a-text");
+      // text.setAttribute("value", `${ariadne}`);
+      // text.setAttribute("look-at", "[gps-camera]");
+      // text.setAttribute("position", "0 -1 0");
+      // text.setAttribute("scale", "1 1 1");
 
-      marker.appendChild(text);
-      scene.appendChild(marker);
+      // marker.appendChild(text);
+      // scene.appendChild(marker);
     //}
   </script>
 
   <body style="margin: 0px; overflow: hidden;">
     <a-scene embedded arjs>
-      <!-- <a-marker type="pattern" url="0.patt">
+      <a-marker type="pattern" url='./data/ARmarker/pattern-ARmarker1.patt'>
         <a-text
-        value="sessionStorage.getItem(['1'])"
+        value="到着"
         look-at="[gps-camera]"
         position="0 -1 0"
         scale="1 1 1"></a-text>
-      </a-marker>   -->
+      </a-marker>  
       <a-entity camera></a-entity>
     </a-scene>
   </body>
