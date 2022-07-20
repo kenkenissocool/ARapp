@@ -141,7 +141,7 @@ function renderPlaces(places, pos) {
     scene.appendChild(model);
 
     for (let i = 0; i < 15; i++) {
-      let model2 = document.createElement("a-box");
+      let model2 = document.createElement("a-plane");
       model2.setAttribute("material", `color:red`);
       model2.setAttribute(
         "gps-entity-place",
