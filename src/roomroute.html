@@ -13,6 +13,13 @@
                 <a-asset-item id="arrow" src="./data/arrowmark.gltf"></a-asset-item>
             </a-assets>
             <a-entity camera></a-entity>
+            <a-marker type="pattern" url="./data/ARmarker/pattern-1.patt">
+                <a-entity   position="0 0 0" 
+                            rotation="0 0 0"
+                            scale="0.7 0.7 0.7"
+                            gltf-model="#arrow" >
+                </a-entity>
+            </a-marker>
         </a-scene>
     
 
@@ -35,70 +42,68 @@
                 }
 
                 routeAPI(url)
-                    .then(async function(data){
-                        const items = data.items[0];
-                        console.log(items);
-                        Object.keys(items).forEach(function(key) {
-                            var val = this[key]; // this は items
-                            console.log([key], [val]);
-                            sessionStorage.setItem([key],[val]);
-                        }, items);
-                        console.log(sessionStorage.getItem([1]));
-                    })
-                    .then(function(){
-                        for (let i = 0; i < 13; i++) {
-                            var ariadne ="";
-                            var orien ="-90 0 0";
-                            console.log(i);
-                            var point = sessionStorage.getItem([i]);
-                            console.log(point);
-
-                            if (point==0) {
-                                ariadne="go back";
-                            } else if (point==1) {
-                                ariadne="arrived";
-                            } else if (point==2) {
-                                ariadne="turn right";
-                                orien="-90 0 90";
-                            } else if (point==3) {
-                                ariadne="go straight";
-                            } else if (point==4) {
-                                ariadne="turn left";
-                                orien="-90 0 -90"
-                            } else if (point==5) {
-                                ariadne="go up";
-                                orien="-90 0 0"
-                            } else if (point==6) {
-                                ariadne="go down";
-                                orien="-90 0 180"
-                            }
-                            console.log(ariadne);
-                        
-                            let scene = document.querySelector("a-scene");
-                        
-                            let marker = document.createElement("a-marker");
-                            marker.setAttribute("type", `pattern`);
-                            marker.setAttribute("url", `./data/ARmarker/pattern-`+i+`.patt`);
-
-                            let entity = document.createElement("a-entity");
-                            entity.setAttribute("look-at", "[gps-camera]");
-                            entity.setAttribute("position", "0 .5 0");
-                            entity.setAttribute("rotation", `${orien}`);
-                            entity.setAttribute("gltf-model", "#arrow");
-                        
-                            let text = document.createElement("a-text");
-                            text.setAttribute("value", `${ariadne}`);
-                            text.setAttribute("look-at", "[gps-camera]");
-                            text.setAttribute("position", "0 .5 0");
-                            text.setAttribute("rotation", "-90 0 0");
-                            text.setAttribute("align", "center");
-                        
-                            marker.appendChild(text);
-                            scene.appendChild(marker);
+                .then(async function(data){
+                    const items = data.items[0];
+                    console.log(items);
+                    Object.keys(items).forEach(function(key) {
+                        var val = this[key]; // this は items
+                        console.log([key], [val]);
+                        sessionStorage.setItem([key],[val]);
+                    }, items);
+                    console.log(sessionStorage.getItem([1]));
+                })
+                .then(function(){
+                    for (let i = 0; i < 13; i++) {
+                        var ariadne ="";
+                        var orien ="-90 0 0";
+                        console.log(i);
+                        var point = sessionStorage.getItem([i]);
+                        console.log(point);
+                        if (point==0) {
+                            ariadne="go back";
+                        } else if (point==1) {
+                            ariadne="arrived";
+                        } else if (point==2) {
+                            ariadne="turn right";
+                            orien="-90 0 90";
+                        } else if (point==3) {
+                            ariadne="go straight";
+                        } else if (point==4) {
+                            ariadne="turn left";
+                            orien="-90 0 -90"
+                        } else if (point==5) {
+                            ariadne="go up";
+                            orien="-90 0 0"
+                        } else if (point==6) {
+                            ariadne="go down";
+                            orien="-90 0 180"
                         }
-                        //window.location.href='https://kenkenissocool.github.io/ARapp/src/markers.html';
-                        //window.location.href='./markers.html';
-                    })
+                        console.log(ariadne);
+                    
+                        let scene = document.querySelector("a-scene");
+                    
+                        let marker = document.createElement("a-marker");
+                        marker.setAttribute("type", `pattern`);
+                        marker.setAttribute("url", `./data/ARmarker/pattern-`+i+`.patt`);
+                        let entity = document.createElement("a-entity");
+                        entity.setAttribute("look-at", "[gps-camera]");
+                        entity.setAttribute("position", "0 .5 0");
+                        entity.setAttribute("rotation", `${orien}`);
+                        entity.setAttribute("gltf-model", "#arrow");
+                    
+                        let text = document.createElement("a-text");
+                        text.setAttribute("value", `${ariadne}`);
+                        text.setAttribute("look-at", "[gps-camera]");
+                        text.setAttribute("position", "0 .5 0");
+                        text.setAttribute("rotation", "-90 0 0");
+                        text.setAttribute("align", "center");
+                    
+                        marker.appendChild(text);
+                        scene.appendChild(marker);
+                    }
+                    //window.location.href='https://kenkenissocool.github.io/ARapp/src/markers.html';
+                    //window.location.href='./markers.html';
+                })
             }
             // for (let i = 0; i < 13; i++) {
             //     var ariadne ="";
