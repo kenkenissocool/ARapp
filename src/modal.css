@@ -47,7 +47,7 @@ body {
 
 #modal-content h1{
 	margin-bottom: 70px;
-	align-self: center;
+	text-align: center;
 }
   
 #modal-overlay {

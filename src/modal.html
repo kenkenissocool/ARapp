@@ -34,23 +34,16 @@
     		<br>
 			<input id="fire" type="button" value="送信"/>
     		<p><span id="resp" class="button-link"></p>
-			<!-- <p><a id="modal-close" class="button-link">閉じる</a></p> -->
 		</div>
 
 		
-		<a-scene
-            renderer="logarithmicDepthBuffer: true;"
-            embedded
-            loading-screen="enabled: false;"
-            arjs="sourceType: webcam; debugUIEnabled: false;"
-			vr-mode-ui="enabled: false"
-        >
+		<a-scene renderer="logarithmicDepthBuffer: true;" embedded loading-screen="enabled: false;"
+        arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false">
             <a-camera gps-camera="gpsMinDistance:5; maxDistance:50;" rotation-reader></a-camera>
-
         </a-scene>
+
 		<script src="./calc3.js" type="module"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="modal.js"></script>
-		
 	</body>
 </html>
