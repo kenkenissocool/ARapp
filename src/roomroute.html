@@ -9,6 +9,9 @@
 
     <body onload="touchAPI1()">
         <a-scene embedded arjs>
+            <a-assets>
+                <a-asset-item id="arrow" src="./data/arrowmark.gltf"></a-asset-item>
+            </a-assets>
             <a-entity camera></a-entity>
         </a-scene>
     
@@ -45,6 +48,7 @@
                     .then(function(){
                         for (let i = 0; i < 13; i++) {
                             var ariadne ="";
+                            var orien ="-90 0 0";
                             console.log(i);
                             var point = sessionStorage.getItem([i]);
                             console.log(point);
@@ -55,14 +59,18 @@
                                 ariadne="arrived";
                             } else if (point==2) {
                                 ariadne="turn right";
+                                orien="-90 0 90";
                             } else if (point==3) {
                                 ariadne="go straight";
                             } else if (point==4) {
                                 ariadne="turn left";
+                                orien="-90 0 -90"
                             } else if (point==5) {
                                 ariadne="go up";
+                                orien="-90 0 0"
                             } else if (point==6) {
                                 ariadne="go down";
+                                orien="-90 0 180"
                             }
                             console.log(ariadne);
                         
@@ -71,6 +79,12 @@
                             let marker = document.createElement("a-marker");
                             marker.setAttribute("type", `pattern`);
                             marker.setAttribute("url", `./data/ARmarker/pattern-`+i+`.patt`);
+
+                            let entity = document.createElement("a-entity");
+                            entity.setAttribute("look-at", "[gps-camera]");
+                            entity.setAttribute("position", "0 .5 0");
+                            entity.setAttribute("rotation", `${orien}`);
+                            entity.setAttribute("gltf-model", "#arrow");
                         
                             let text = document.createElement("a-text");
                             text.setAttribute("value", `${ariadne}`);
