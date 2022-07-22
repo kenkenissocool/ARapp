@@ -60,14 +60,11 @@
                         } else if (point==2) {
                             ariadne="turn right";
                             orien="90 0 0";
-                            // orien="-90 0 0";
                         } else if (point==3) {
                             ariadne="go straight";
-                            orien="0 0 90";
-                            // orien="-180 90 0";
+                            orien="0 0 -90";
                         } else if (point==4) {
                             ariadne="turn left";
-                            // orien="-90 180 0"
                             orien="-90 0 0"
                         } else if (point==5) {
                             ariadne="go up";
@@ -85,8 +82,8 @@
                         marker.setAttribute("url", `./data/ARmarker/pattern-`+i+`.patt`);
 
                         let img = document.createElement("a-image");
-                        img.setAttribute("scale", "2 2 2");
-                        img.setAttribute("position", "0 0 2");
+                        img.setAttribute("scale", "10 10 10");
+                        img.setAttribute("position", "0 0 10");
                         img.setAttribute("rotation", `${orien}`);
                         img.setAttribute("src", "#arrow");
                     
