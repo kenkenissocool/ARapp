@@ -86,13 +86,14 @@
                         img.setAttribute("position", "0 0 10");
                         img.setAttribute("rotation", `${orien}`);
                         img.setAttribute("src", "#arrow");
+                        img.setAttribute("animation__2", "property: position; from:0 0 10; to: 0 0 0; dur: 1000; easing: linear; loop: true");
 
-                        let ani = document.createElement("a-animation");
-                        ani.setAttribute("attribute", "position");
-                        ani.setAttribute("from", "0 0 10");
-                        ani.setAttribute("to","0 0 8");
-                        ani.setAttribute("dur", "500");
-                        ani.setAttribute("repeat", "indefinite");
+                        // let ani = document.createElement("a-animation");
+                        // ani.setAttribute("attribute", "position");
+                        // ani.setAttribute("from", "0 0 10");
+                        // ani.setAttribute("to","0 0 8");
+                        // ani.setAttribute("dur", "1000");
+                        // ani.setAttribute("repeat", "indefinite");
                     
                         // let text = document.createElement("a-text");
                         // text.setAttribute("value", `${ariadne}`);
