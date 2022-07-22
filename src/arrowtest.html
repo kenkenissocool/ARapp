@@ -7,15 +7,11 @@
     <body style="margin: 0px; overflow: hidden;">
         <a-scene embedded vr-mode-ui="enabled: false;" arjs="debugUIEnabled: false;">
             <a-assets>
-                <a-asset-item id="arrow" src="./data/arrowmark.gltf"></a-asset-item>
+                <a-asset-item id="arrow" src="./data/arrow.png"></a-asset-item>
             </a-assets>
             
             <a-marker type="pattern" url="./data/ARmarker/pattern-1.patt">
-                <a-entity   position="0 0 0" 
-                            rotation="-90 0 0"
-                            scale="0.7 0.7 0.7"
-                            gltf-model="#arrow" >
-                </a-entity>
+                <a-image src="#arrow" width="2" height="2" rotation="-90 0 0"></a-image>
             </a-marker>
             <a-entity camera></a-entity>
         </a-scene>
