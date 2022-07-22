@@ -79,21 +79,21 @@
                         marker.setAttribute("type", `pattern`);
                         marker.setAttribute("url", `./data/ARmarker/pattern-`+i+`.patt`);
 
-                        let entity = document.createElement("a-entity");
-                        entity.setAttribute("scale", "0.7 0.7 0.7");
-                        entity.setAttribute("position", "0 0 0");
-                        entity.setAttribute("rotation", `${orien}`);
-                        entity.setAttribute("gltf-model", "#arrow");
+                        let img = document.createElement("a-image");
+                        img.setAttribute("scale", "0.7 0.7 0.7");
+                        img.setAttribute("position", "0 0 0");
+                        img.setAttribute("rotation", `${orien}`);
+                        img.setAttribute("src", "#arrow");
                     
-                        let text = document.createElement("a-text");
-                        text.setAttribute("value", `${ariadne}`);
-                        text.setAttribute("look-at", "[gps-camera]");
-                        text.setAttribute("position", "0 .5 0");
-                        text.setAttribute("rotation", "-90 0 0");
-                        text.setAttribute("align", "center");
+                        // let text = document.createElement("a-text");
+                        // text.setAttribute("value", `${ariadne}`);
+                        // text.setAttribute("look-at", "[gps-camera]");
+                        // text.setAttribute("position", "0 .5 0");
+                        // text.setAttribute("rotation", "-90 0 0");
+                        // text.setAttribute("align", "center");
                     
-                        marker.appendChild(text);
-                        marker.appendChild(entity);
+                        // marker.appendChild(text);
+                        marker.appendChild(img);
                         scene.appendChild(marker);
                     }
                 })
