@@ -58,7 +58,7 @@ function callAPIOCI(url, pos){
       const items = data.items;
       lat = items[0]["lat"];
       lon = items[0]["lon"];
-      const location = lon +", " + lat;
+      const location = "返答：" + lon + ", " + lat;
       console.log(lat);
       console.log(jsonObj);
       document.getElementById("resp").textContent = location ;

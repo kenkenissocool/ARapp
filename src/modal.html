@@ -16,8 +16,7 @@
 		
 		<!-- ここからモーダルウィンドウ -->
 		<div id="modal-content">
-			<p>目的地選択(返答が返ってきたら閉じるを押す)</p>
-    		<label for="plase">行きたい場所を選択してください</label>
+			<h1>目的地選択画面</h1>
     		<select id="plase">
     		    <option value="1">粉とクリーム</option>
     		    <option value="2">つくば駅</option>
@@ -31,8 +30,8 @@
     		    <option value="10">HHP先端研究センター</option>
     		</select>
     		<br>
-    		<p>返答: <span id = "resp"></p>
-    		<input id="fire" type="button" value="選択"/>
+			<input id="fire" type="button" value="送信"/>
+    		<p><span id = "resp"></p>
 			<p><a id="modal-close" class="button-link">閉じる</a></p>
 		</div>
 		<a-scene
