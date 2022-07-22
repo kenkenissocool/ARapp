@@ -86,6 +86,13 @@
                         img.setAttribute("position", "0 0 10");
                         img.setAttribute("rotation", `${orien}`);
                         img.setAttribute("src", "#arrow");
+
+                        let ani = document.createElement("a-animation");
+                        ani.setAttribute("attribute", "position");
+                        ani.setAttribute("from", "0 0 10");
+                        ani.setAttribute("to","0 0 8");
+                        ani.setAttribute("dur", "500");
+                        ani.setAttribute("repeat", "indefinite");
                     
                         // let text = document.createElement("a-text");
                         // text.setAttribute("value", `${ariadne}`);
@@ -94,7 +101,7 @@
                         // text.setAttribute("rotation", "-90 0 0");
                         // text.setAttribute("align", "center");
                     
-                        // marker.appendChild(text);
+                        img.appendChild(ani);
                         marker.appendChild(img);
                         scene.appendChild(marker);
                     }
