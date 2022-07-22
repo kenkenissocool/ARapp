@@ -39,7 +39,6 @@ body {
 	width: 50% ;
 	margin: 0 ;
 	padding: 10px 20px ;
-	border: 2px solid #aaa ;
 	background: #fff ;
 	position: fixed ;
 	display: none ;
@@ -60,9 +59,4 @@ body {
 .button-link {
 	color: #00f ;
 	text-decoration: underline ;
-}
- 
-.button-link:hover {
-	cursor: pointer ;
-	color: #f00 ;
 }
