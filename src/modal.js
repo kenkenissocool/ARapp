@@ -41,8 +41,8 @@ $(function(){
 	//コンテンツをフェードインする
 	$( "#modal-content" ).fadeIn( "slow" ) ;
 
-	//[#modal-overlay]、または[#modal-close]をクリックしたら…
-	$( "#modal-overlay,#modal-close" ).unbind().click( function(){
+	//[#modal-overlay]、または[#resp]をクリックしたら…
+	$( "#modal-overlay,#resp" ).unbind().click( function(){
 		//[#modal-content]と[#modal-overlay]をフェードアウトした後に…
 		$( "#modal-content,#modal-overlay" ).fadeOut( "slow" , function(){
 			$('#modal-overlay').remove() ;
