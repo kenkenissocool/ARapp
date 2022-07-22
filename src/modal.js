@@ -23,9 +23,9 @@
 ********************************************************************************/
 
 
-$(document).ready(function(){
+$(function(){
 
-//$("#modal-open").on('load', function(){
+//$("#modal-open").click( function(){
 
 	$( this ).blur() ;	//ボタンからフォーカスを外す
 	if( $( "#modal-overlay" )[0] ) return false ;		//新しくモーダルウィンドウを起動しない (防止策1)
