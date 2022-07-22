@@ -7,7 +7,7 @@
         <title>教室選択</title>
     </head>
 
-    <body>
+    <body onload="routeAPI1()">
         <a-scene embedded arjs>
             <a-entity camera></a-entity>
         </a-scene>
@@ -48,7 +48,7 @@
                             console.log(i);
                             var point = sessionStorage.getItem([i]);
                             console.log(point);
-                                    
+
                             if (point==0) {
                                 ariadne="go back";
                             } else if (point==1) {
