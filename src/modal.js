@@ -25,7 +25,7 @@
 
 $(document).ready(function(){
 
-$("#modal-open").on('load', function(){
+//$("#modal-open").on('load', function(){
 
 	$( this ).blur() ;	//ボタンからフォーカスを外す
 	if( $( "#modal-overlay" )[0] ) return false ;		//新しくモーダルウィンドウを起動しない (防止策1)
@@ -48,7 +48,7 @@ $("#modal-open").on('load', function(){
 			$('#modal-overlay').remove() ;
 		});
 	});
-});
+//});
 
 $( window ).resize( centeringModalSyncer ) ;
 
