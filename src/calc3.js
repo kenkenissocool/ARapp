@@ -141,8 +141,19 @@ function renderPlaces(places, pos) {
     scene.appendChild(model);
 
     for (let i = 0; i < 15; i++) {
-      let model2 = document.createElement("a-box");
-      model2.setAttribute("material", `color:red`);
+      // let model2 = document.createElement("a-box");
+      // model2.setAttribute("material", `color:red`);
+      // model2.setAttribute(
+      //   "gps-entity-place",
+      //   `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
+      // );
+      // model2.setAttribute("scale", `${1} ${1} ${1}`);
+      // model2.addEventListener("loaded", () => {
+      //   window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
+      // });
+      // scene.appendChild(model2);
+      let model2 = document.createElement("a-plane");
+      model2.setAttribute("color", `red`);
       model2.setAttribute(
         "gps-entity-place",
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
