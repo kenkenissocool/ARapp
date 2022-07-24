@@ -159,7 +159,7 @@ function renderPlaces(places, pos) {
         `latitude: ${cal.splitsLat[i]}; longitude: ${cal.splitsLon[i]};`
       );
       model2.setAttribute("rotation", "-90 45 0");
-      model2.setAttribute("scale", `${1} ${1} ${8}`);
+      model2.setAttribute("scale", `${8} ${1} ${1}`);
       model2.addEventListener("loaded", () => {
         window.dispatchEvent(new CustomEvent("gps-entity-place-loaded"));
       });
