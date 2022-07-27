@@ -11,6 +11,7 @@
         <a-scene embedded arjs>
             <a-assets>
                 <img id="arrow" src="./data/arrow.png"></img>
+                <img id="pin" src="./data/pin.png"></img>
             </a-assets>
 
             <a-entity camera></a-entity>
@@ -50,6 +51,7 @@
                     for (let i = 0; i < 13; i++) {
                         var ariadne ="";
                         var orien ="-90 0 0";
+                        var imaging = "#arrow";
                         console.log(i);
                         var point = sessionStorage.getItem([i]);
                         console.log(point);
@@ -58,6 +60,7 @@
                             orien="0 0 90";
                         } else if (point==1) {
                             ariadne="arrived";
+                            imaging="#pin";
                         } else if (point==2) {
                             ariadne="turn right";
                             orien="90 0 0";
@@ -86,7 +89,7 @@
                         img.setAttribute("scale", "5 5 5");
                         img.setAttribute("position", "0 0 7");
                         img.setAttribute("rotation", `${orien}`);
-                        img.setAttribute("src", "#arrow");
+                        img.setAttribute("src", `${imaging}`);
                         //img.setAttribute("animation", "property: position; to: 0 0 0; dur: 2000; easing: linear; loop: true");
 
                         // let ani = document.createElement("a-animation");
